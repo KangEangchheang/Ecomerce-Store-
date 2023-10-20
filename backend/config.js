@@ -1,1 +1,5 @@
-const PORT = 8080;
+const PORT = 5555;
+
+module.exports = {
+    PORT,
+}
