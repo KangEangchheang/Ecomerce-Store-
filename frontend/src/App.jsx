@@ -4,18 +4,20 @@ import Home from './views/Home'
 import Navbar from './components/Navbar';
 import Footer from "./components/Footer";
 
-const Contact = ()=>{return(<div>Hello contact</div>)}
-
 function App() {
   return (
-    <Router>
-      <Navbar></Navbar>
-      <Routes>
-        <Route path='/' exact Component={Home}/>
-        <Route path='/contact' Component={Contact}/>
-      </Routes>
+    <>
+      <div className='m-auto flex flex-col max-w-screen-2xl grow'>
+        <Router>
+            <Navbar></Navbar>
+            <Routes>
+              <Route path='/' exact Component={Home}/>
+              <Route path='/contact' Component={''}/>
+            </Routes>
+        </Router>
+      </div>
       <Footer></Footer>
-    </Router>
+    </>
   )
 }
 
