@@ -1,0 +1,14 @@
+.addCard{
+    /* display: none; */
+    /* bg-[#000000] w-full h-[30px] gap-[10px] self-end */
+    background-color: #000000;
+    width: 100%;
+    height: 30px;
+
+}
+.add-wrapper:hover .addCard{
+    display: block;
+    background-color: #000000;
+    width: 100%;
+    height: 30px;
+}
