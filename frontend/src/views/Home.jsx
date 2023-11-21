@@ -1,4 +1,6 @@
 import Category from "../components/Category";
+import Card from "../components/small/card";
+
 
 export default function Home(){
     
@@ -7,6 +9,7 @@ export default function Home(){
             {/* Header Banner Section */}
             <div className="ml-[-7vw] w-[100vw] bg-[#0A0A0A] h-[80vh]"></div>
             <Category></Category>
+            {/* <Card bg={'red'}></Card> */}
         </div>
     )
 }
