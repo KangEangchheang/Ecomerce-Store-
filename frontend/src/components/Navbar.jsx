@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom"
 export default function Navbar(){
     const location = useLocation(); //get the param of current url locaiton
     return(
-        <nav className="flex justify-between mt-10 items-end mx-24">
+        <nav className="flex justify-between mt-10 items-end px-16">
             <div className="flex gap-40">
                 <h1 className="text-xl font-semibold font-serif">iFour</h1>
                 <div className="flex gap-10">

@@ -6,14 +6,18 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <Router>
-      <Navbar></Navbar>
-      <Routes>
-        <Route path='/' exact Component={Home}/>
-        <Route path='/contact' Component={''}/>
-      </Routes>
+    <>
+      <div className='m-auto flex flex-col max-w-screen-2xl grow'>
+        <Router>
+            <Navbar></Navbar>
+            <Routes>
+              <Route path='/' exact Component={Home}/>
+              <Route path='/contact' Component={''}/>
+            </Routes>
+        </Router>
+      </div>
       <Footer></Footer>
-    </Router>
+    </>
   )
 }
 
