@@ -1,3 +1,6 @@
+import facebook from "../assets/icons/facebook.png";
+import telegram from '../assets/icons/telegram.png';
+
 function Footer() {
     return ( 
         <div className="bg-text2 w-full py-8 text-text text-sm flex justify-center gap-20 font-light flex-wrap mt-10">
@@ -30,7 +33,8 @@ function Footer() {
             <div className="flex flex-col gap-3">
                 <div className="text-[16px] font-semibold">Follow us</div>
                 <div className="flex gap-3">
-                    
+                    <img src={facebook} className="w-6"/>
+                    <img src={telegram} className="w-6"/>
                 </div>
             </div>
             <div className="w-full text-center text-text1">© Copyright 2023 All right reversed</div>
