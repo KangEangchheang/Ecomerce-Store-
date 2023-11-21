@@ -6,7 +6,7 @@ export default function Navbar(){
     return(
         <nav className="flex justify-between mt-10">
             <div className="flex gap-40">
-                <img src="" alt="iFour"></img>
+                <h1 className="text-xl font-semibold font-serif">iFour</h1>
                 <div className="flex gap-5">
                     <Link to="/" className={location.pathname === '/'? 'underline': null}>Home</Link>
                     <Link to="/contact" className={location.pathname === '/contact'? 'underline': null}>Contact</Link>
@@ -14,7 +14,7 @@ export default function Navbar(){
                 </div>
             </div>
             <div>
-                <input className="text-sm py-1 px-2 w-64 outline-none border-primary1 border-solid border-[1px] rounded-sm" placeholder="what are you looking for?"/>
+                <input className="text-sm text-text1 py-1 px-2 w-64 outline-none border-primary1 border-solid border-[1px] rounded-sm" placeholder="what are you looking for?"/>
             </div>
         </nav>
     )
