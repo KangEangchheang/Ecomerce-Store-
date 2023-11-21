@@ -17,5 +17,8 @@
   scroll-behavior: smooth;
 }
 body{
-  margin: auto 7vw;
+  margin: 0 auto;
+  padding:0;
+  display:flex;
+  justify-content: center;
 }

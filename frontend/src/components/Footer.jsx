@@ -1,6 +1,6 @@
 function Footer() {
     return ( 
-        <div className="bg-text2 w-[100vw] ml-[-7vw] px-24 py-8 text-text text-sm flex gap-20 font-light flex-wrap">
+        <div className="bg-text2 w-[100vw] px-24 py-8 text-text text-sm flex gap-20 font-light flex-wrap mt-10">
             <div className="flex flex-col gap-3">
                 <h1 className="text-xl font-semibold font-serif">iFour</h1>
                 <div className="font-semibold">Subscribe</div>

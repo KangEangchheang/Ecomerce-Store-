@@ -18,7 +18,12 @@ export default {
         'text':'#FAFAFA',
         'primary1':'#363738',
         'primary':'#FFFFFF'
-      }
+      },
+      fontSize: {
+        'size': '12px',
+        'size1': '14px',
+        'size2': '20px',
+    }
     },
   },
   plugins: [],
