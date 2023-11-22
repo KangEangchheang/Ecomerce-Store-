@@ -1,3 +1,4 @@
+import BrandSlide from "../components/BrandSlide";
 import Category from "../components/Category";
 import Service from "../components/Service";
 import Btn from "../components/small/Btn";
@@ -17,6 +18,7 @@ export default function Home(){
                 <Btn text="View all product"/>
                 <Btn text="View All Products"/>
                 <Service/>
+                <BrandSlide/>
             </div>
         </>
         
