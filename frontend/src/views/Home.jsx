@@ -15,12 +15,14 @@ export default function Home(){
                 <FeatureBar />
                 {/* Header Banner Section */}
                 <><Category></Category><FeatureBar /><div data-te-perfect-scrollbar-init className="w-[1375px] m-auto bg-slate-000 flex justify-between">
+        <div className="w-full flex justify-evenly">
         <Card />
         <Card />
         <Card />
         <Card />
         <Card />
         <Card />
+        </div>
     </div></>
                 
                 
