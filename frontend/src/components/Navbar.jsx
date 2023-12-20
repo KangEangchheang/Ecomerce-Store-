@@ -14,7 +14,7 @@ export default function Navbar(){
                 </div>
             </div>
             <div>
-                <input className="text-xs text-text1 py-2 px-3 w-72 outline-none border-primary1 border-solid border-[1px] rounded-[5px]" placeholder="what are you looking for?"/>
+                <input className="text-xs text-text1 py-2 px-3 w-72 outline-none border-primary1 border-solid border-2 rounded-[5px]" placeholder="what are you looking for?"/>
             </div>
         </nav>
     )
