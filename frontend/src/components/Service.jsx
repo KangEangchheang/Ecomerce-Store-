@@ -21,7 +21,7 @@ function Service() {
         }
     ]
     return ( 
-        <div className="justify-center flex gap-24">
+        <div className="justify-evenly flex w-full my-8">
             {services.map((i,index)=>(
                 <div className="flex flex-col gap-3 items-center" key={index}>
                     <div className='bg-text1 p-3 rounded-full'>

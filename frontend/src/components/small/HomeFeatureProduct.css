@@ -1,0 +1,6 @@
+.ishover:hover{
+    scale:1.1;
+}
+.ishover{
+    transition: 'opacity 0.5s ease';
+}

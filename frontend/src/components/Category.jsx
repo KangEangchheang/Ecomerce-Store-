@@ -1,10 +1,12 @@
 import CategoryCard from "./small/CategoryCard";
+import Btn from "./small/Btn";
+import SectionTitle from "./small/SectionTitle";
 
 function Category() {
     return (  
         <div>
-            <div className="mb-4 text-center bg-secondary1 text-2xl tracking-[4.8px] text-secondary py-2 font-semibold rounded shadow-md">Categories</div>
-            <div className="flex items-center flex-col gap-1 h-72 text-2xl text-primary w-full">
+            <SectionTitle text="Categories" isbg={true}/>
+            <div className="flex items-center flex-col gap-1 h-72 text-2xl text-primary w-full mb-8">
                 <div className="w-full flex flex-wrap gap-1 grow">
                     <CategoryCard text="Keyboard"/>
                     <CategoryCard text="Mouse"/>
@@ -18,6 +20,7 @@ function Category() {
                     <CategoryCard text="Software"/>
                 </div>
             </div>
+            <Btn text="View all Categories" />
         </div>
     );
 }

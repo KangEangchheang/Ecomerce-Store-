@@ -16,7 +16,7 @@ function BrandSlide() {
         ]);
     }, []);//empty array to make the setlist run only one time
     return ( 
-        <div className="flex gap-24 items-center overflow-scroll w-full" style={{scrollbarWidth:'none'}}>
+        <div className="flex gap-24 items-center overflow-clip w-full my-8" style={{scrollbarWidth:'none'}}>
             {list.map((i,index)=>(
                 <img key={index} src={i} className="h-16" />
             ))}
