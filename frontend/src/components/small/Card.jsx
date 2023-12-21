@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Card.css";
+import Price from "./price";
 function Card() {
   const [product,setProduct] = useState({});
 
@@ -34,12 +35,7 @@ function Card() {
         </div>
         <div className="w-full mt-2">
           <div className="txt text-center font-[500] text-[14px] leading-[15px]">HAVIT HV-G92 Gamepad</div>
-          <div className="flex gap-[10px] justify-center items-center mt-1">
-            <div className="h-[18px] w-[40px] bg-secondary1 text-white text-[12px] rounded-[5px] flex justify-center items-center ">-40%</div>
-            <div className="price text-seconbg-secondary1 font-[600] text-[14px]">$150</div>
-            <div className="text-[#363738] font-[500] text-[14px] opacity-50 line-through">$170</div>
-          </div>
-          
+          <Price price={300} discount={20}/>
         </div>
       </div>
     </div>

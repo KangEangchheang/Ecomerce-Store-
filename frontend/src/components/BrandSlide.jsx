@@ -4,7 +4,7 @@ function BrandSlide() {
     const [list,setList] = useState([]);
     useEffect(() => {
         // This will run after the component has mounted to webpage to avoid infinite loop
-        setList([
+        return setList([
             'https://i.pinimg.com/originals/f1/47/2c/f1472cd9f017531ed6c575beeeabb368.png',
             'https://logos-world.net/wp-content/uploads/2020/11/MSI-Logo.png',
             'https://1000logos.net/wp-content/uploads/2021/04/HyperX-logo.png',

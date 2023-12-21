@@ -7,7 +7,7 @@ function NewArrival() {
     return ( 
         <div>
             <SectionTitle text="New Arrivals" isbg={false} text2="New" text2_bg="#397367"/>
-            <div className="my-8 pb-8 flex justify-evenly overflow-x-scroll gap-6 relative">
+            <div className="mt-8 pb-8 flex justify-evenly overflow-x-scroll gap-6 relative">
                 <Card/>
                 <Card/>
                 <Card/>
