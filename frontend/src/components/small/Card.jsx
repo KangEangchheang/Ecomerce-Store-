@@ -5,19 +5,19 @@ function Card() {
   const [product,setProduct] = useState({});
 
   return (
-    <div className="Card-wrapper h-[264px] w-[200px] flex">
-      <div className="w-[200px] h-[200px] bg-[#F5F5F5] relative box-border group " id='cardContainer'>
+    <div className="Card-wrapper h-[250px] w-[180px] flex box-border">
+      <div className="w-[180px] h-[200px] bg-[#F5F5F5] relative box-border group " id='cardContainer'>
         <div className="w-[80px] h-[20px] flex items-center justify-center top-1 left-1 opacity-80 rounded-r-[12px] shadow-xl bg-[#394673] absolute text-[12px] font-[Poppins] text-white font-[400]">
           Restocked   
           {/* ------------------- */}
         </div>
-        <div className=" w-[150px] h-[200px] m-auto flex flex-col items-center justify-between ">
+        <div className=" w-[150px] h-[180px] m-auto flex flex-col items-center justify-between ">
           <img
             className="w-11/12 mt-4"
             src="https://s3-alpha-sig.figma.com/img/5d5c/2e52/50752d55f8b60f2aa2923183dadbc135?Expires=1701648000&Signature=o~TeErHFtmTG0LyTzf6~go1k2NrhKtL6rsIXpF2Pu5CiwZinTewgxoJt3u6FUNkncQn4tnZdLZTLCuQiUHFbC8wdEWgyXgStbEtBVioPYbwi4Htw2mLBJtEMOOEZLCzmOrlPCyUowY5J1-e9VHep3gKuktHTkOdKdBPzzpO~ZeoAM65kQ6eZ1PVdsLY5OxsRHMzW49fU8NCjIEb2xzLyvPuNyUnlcvwhYLOh71s47VgWEshxf7kBvxLUrjdsVG36nq5~b31~afivzemgYo8pAFu76PMTlqWuynCGqNxQQ4D8-5m38CJSSDGgL6n~OnQqbA5QgHB2Azu68I7FEx~UxQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
             alt=""
           />
-          <div className="addCart w-[200px] h-[30px] bg-secondary1 rounded-[3px] flex gap-[10px] justify-center items-center invisible cursor-pointer group-hover:visible">
+          <div className="addCart w-[180px] h-[30px] bg-secondary1 rounded-[3px] flex gap-[10px] justify-center items-center invisible cursor-pointer group-hover:visible">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="14"

@@ -1,6 +1,6 @@
 function AddCard() {
     return ( 
-        <div className="w-[200px] h-[30px] bg-secondary1 rounded-[3px] flex gap-[10px] justify-center items-center cursor-pointer">
+        <div className="w-[180px] h-[30px] bg-secondary1 rounded-[3px] flex gap-[10px] justify-center items-center cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="14"

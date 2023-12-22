@@ -7,7 +7,7 @@ function FeatureProduct() {
     return ( 
         <div>
             <SectionTitle text="Feature Products" isbg={true}/>
-            <div className="mt-8 pb-8 flex justify-evenly overflow-x-scroll gap-6 relative">
+            <div className="mt-8 pb-8 flex justify-evenly gap-6 relative"> {/*overflow-x-scroll*/}
                 <Card/>
                 <Card/>
                 <Card/>
