@@ -1,8 +1,10 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
 import "./Card.css";
 import Price from "./price";
-function Card() {
-  const [product,setProduct] = useState({});
+function Card({prod}) {
+  if (!prod) {
+    return <div>no data</div>;
+  }
 
   return (
     <div className="Card-wrapper h-[264px] w-[200px] flex">
@@ -14,7 +16,7 @@ function Card() {
         <div className=" w-[150px] h-[200px] m-auto flex flex-col items-center justify-between ">
           <img
             className="w-11/12 mt-4"
-            src="https://s3-alpha-sig.figma.com/img/5d5c/2e52/50752d55f8b60f2aa2923183dadbc135?Expires=1701648000&Signature=o~TeErHFtmTG0LyTzf6~go1k2NrhKtL6rsIXpF2Pu5CiwZinTewgxoJt3u6FUNkncQn4tnZdLZTLCuQiUHFbC8wdEWgyXgStbEtBVioPYbwi4Htw2mLBJtEMOOEZLCzmOrlPCyUowY5J1-e9VHep3gKuktHTkOdKdBPzzpO~ZeoAM65kQ6eZ1PVdsLY5OxsRHMzW49fU8NCjIEb2xzLyvPuNyUnlcvwhYLOh71s47VgWEshxf7kBvxLUrjdsVG36nq5~b31~afivzemgYo8pAFu76PMTlqWuynCGqNxQQ4D8-5m38CJSSDGgL6n~OnQqbA5QgHB2Azu68I7FEx~UxQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+            src={prod.img}
             alt=""
           />
           <div className="addCart w-[200px] h-[30px] bg-secondary1 rounded-[3px] flex gap-[10px] justify-center items-center invisible cursor-pointer group-hover:visible">
@@ -34,8 +36,8 @@ function Card() {
           </div>
         </div>
         <div className="w-full mt-2">
-          <div className="txt text-center font-[500] text-[14px] leading-[15px]">HAVIT HV-G92 Gamepad</div>
-          <Price price={300} discount={20}/>
+          <div className="txt text-center font-[500] text-[14px] leading-[15px]">{prod.name}</div>
+          <Price price={prod.price} discount={prod.discount.percent}/>
         </div>
       </div>
     </div>

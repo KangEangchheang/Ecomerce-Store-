@@ -17,6 +17,20 @@
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
 }
+
+@layer utilities {
+    /* Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+}
+
+
 @media screen and (max-width:1366px) {
   :root{
     font-size: 14px;
