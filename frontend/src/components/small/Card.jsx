@@ -1,18 +1,34 @@
 /* eslint-disable react/prop-types */
 import "./Card.css";
 import Price from "./price";
+import { useNavigate } from 'react-router-dom'
+
 function Card({prod}) {
   if (!prod) {
     return <div>no data</div>;
   }
+  const navigate = useNavigate();
 
+  const handleClick = () =>{
+
+    navigate(`/products/${prod.category}/${prod.id}`);
+    window.scrollTo(0, 0);
+
+  }
+  
   return (
     <div className="Card-wrapper h-[264px] w-[200px] flex">
       <div className="w-[200px] h-[200px] bg-[#F5F5F5] relative box-border group " id='cardContainer'>
-        <div className="w-[80px] h-[20px] flex items-center justify-center top-1 left-1 opacity-80 rounded-r-[12px] shadow-xl bg-[#394673] absolute text-[12px] font-[Poppins] text-white font-[400]">
-          Restocked   
-          {/* ------------------- */}
-        </div>
+        {
+            prod.quantity < 1 ? (
+              <div className="w-[80px] h-[20px] flex items-center justify-center top-1 left-1 opacity-80 rounded-r-[12px] shadow-xl bg-restock absolute text-[12px] font-[Poppins] text-white font-[400]">out of stock</div>
+            ): 
+            (
+             prod.discount.percent > 0 &&
+             <div className="w-[80px] h-[20px] flex items-center justify-center top-1 left-1 opacity-80 rounded-r-[12px] shadow-xl bg-discount absolute text-[12px] font-[Poppins] text-white font-[400]">{prod.discount.percent}%</div>
+            ) 
+          }
+        
         <div className=" w-[150px] h-[200px] m-auto flex flex-col items-center justify-between ">
           <img
             className="w-11/12 mt-4"
@@ -35,7 +51,7 @@ function Card({prod}) {
             <span className="text-secondary text-[12px] font-[500] " id='addCart'>Add To Cart</span>
           </div>
         </div>
-        <div className="w-full mt-2">
+        <div className="w-full mt-2 cursor-pointer" onClick={handleClick}>
           <div className="txt text-center font-[500] text-[14px] leading-[15px]">{prod.name}</div>
           <Price price={prod.price} discount={prod.discount.percent}/>
         </div>

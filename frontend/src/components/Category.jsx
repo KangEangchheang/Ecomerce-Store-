@@ -1,8 +1,14 @@
 import CategoryCard from "./small/CategoryCard";
 import Btn from "./small/Btn";
 import SectionTitle from "./small/SectionTitle";
+import {useNavigate} from 'react-router-dom';
 
 function Category() {
+    const nav = useNavigate();
+    function navigate(){
+        nav('/products/');
+    }
+
     return (  
         <div>
             <SectionTitle text="Categories" isbg={true}/>
@@ -20,7 +26,9 @@ function Category() {
                     <CategoryCard text="Software"/>
                 </div>
             </div>
-            <Btn text="View all Categories" />
+            <div onClick={()=>navigate()}>
+                <Btn text="View all Categories"/>
+            </div>
         </div>
     );
 }
