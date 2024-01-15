@@ -1,10 +1,12 @@
 import {useRef} from 'react'
+import {useNavigate} from 'react-router-dom'
 import Card from './small/Card';
 import HomeFeatureProductScroll from './small/HomeFeatureProductScroll';
 import SectionTitle from "./small/SectionTitle";
 
 function Promotion({productList}) {
     const sliderRef = useRef(null);
+    const nav = useNavigate();
     const handleClick = (click) => {
         const slider = sliderRef.current;
         if (click) {
@@ -17,9 +19,15 @@ function Promotion({productList}) {
             }
         }
     };
+    function goToFeature(){
+        nav('/feature');
+    }
+
     return ( 
         <div className='relative'>
-            <SectionTitle text="Promotion" isbg={true} />
+            <div className='cursor-pointer' onClick={()=>goToFeature()}>
+                <SectionTitle text="Promotion" isbg={false} />
+            </div>
             <ul
                 ref={sliderRef}
                 id='slider'

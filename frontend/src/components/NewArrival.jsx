@@ -19,7 +19,7 @@ function NewArrival({productList}) {
     };
     return ( 
         <div className='relative'>
-            <SectionTitle text="New Arrival" isbg={true} />
+            <SectionTitle text="New Arrival" isbg={false} />
             <ul
                 ref={sliderRef}
                 id='slider'

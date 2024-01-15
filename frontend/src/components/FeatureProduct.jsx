@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom'
 import Card from './small/Card';
 import HomeFeatureProductScroll from './small/HomeFeatureProductScroll';
 import SectionTitle from "./small/SectionTitle";
@@ -6,6 +7,7 @@ import SectionTitle from "./small/SectionTitle";
 function FeatureProduct({ productList }) {
   const [isHover, setHover] = useState(false);
   const sliderRef = useRef(null);
+  const nav = useNavigate();
 
   const handleMouseOver = () => {
     setHover(true);
@@ -39,10 +41,15 @@ function FeatureProduct({ productList }) {
         
     }
   };
+  function goToFeature(){
+    nav('/feature');
+  }
 
   return (
     <div className='relative'>
-      <SectionTitle text="Feature Products" isbg={true} />
+      <div className='cursor-pointer' onClick={()=>goToFeature()}>
+        <SectionTitle text="Feature Products" isbg={true} />
+      </div>
       <ul
         ref={sliderRef}
         onMouseOver={handleMouseOver}

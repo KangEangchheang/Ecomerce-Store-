@@ -56,7 +56,7 @@ function ProductDetail() {
             <div className='flex gap-1 items-baseline text-sm my-8'>
                 <Link to="/products">Products</Link>
                 <span>{'>'}</span>
-                <Link to="/products/Gamepads">{product.category}</Link>
+                <Link to="/Gamepads">{product.category}</Link>
                 <span>{'>'}</span>
                 <p className='font-semibold'>{product.name}</p>
             </div>

@@ -5,12 +5,14 @@ import NewArrival from "../components/NewArrival";
 import Promotion from "../components/Promotion";
 import Service from "../components/Service";
 import Btn from "../components/small/Btn";
+import {useNavigate} from 'react-router-dom'
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 export default function Home(){
     const [productList,setProductList] = useState([]);
+    const nav = useNavigate();
     useEffect(()=>{
         const fetchData = async () => {
             try {
@@ -24,6 +26,9 @@ export default function Home(){
 
         fetchData();
     },[])
+    function goToProduct(){
+        nav('/products')
+    }
     return(
         <>
             {/* Header Banner Section */}  
@@ -36,7 +41,9 @@ export default function Home(){
                 <FeatureProduct productList={productList}/>
                 <NewArrival productList={productList}/>
                 <Promotion productList={productList}/>
-                <Btn text="View All Products"/>
+                <div onClick={()=>goToProduct()}>
+                    <Btn text="View All Products"/>
+                </div>
                 <Service/>
                 <BrandSlide/>
             </div>

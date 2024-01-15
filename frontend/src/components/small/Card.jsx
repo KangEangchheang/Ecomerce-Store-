@@ -4,14 +4,14 @@ import Price from "./price";
 import { useNavigate } from 'react-router-dom'
 
 function Card({prod}) {
+  
+  const navigate = useNavigate();
   if (!prod) {
     return <div>no data</div>;
   }
-  const navigate = useNavigate();
-
   const handleClick = () =>{
 
-    navigate(`/products/${prod.category}/${prod.id}`);
+    navigate(`/products/${prod.id}`);
     window.scrollTo(0, 0);
 
   }
@@ -31,9 +31,10 @@ function Card({prod}) {
         
         <div className=" w-[150px] h-[200px] m-auto flex flex-col items-center justify-between ">
           <img
-            className="w-11/12 mt-4"
+            className="w-11/12 mt-4 cursor-pointer"
             src={prod.img}
             alt=""
+            onClick={handleClick}
           />
           <div className="addCart w-[200px] h-[30px] bg-secondary1 rounded-[3px] flex gap-[10px] justify-center items-center invisible cursor-pointer group-hover:visible">
             <svg

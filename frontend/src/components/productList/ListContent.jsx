@@ -34,14 +34,14 @@ function ListContent({List}) {
                 </ul>
             ):(
                 //this is grid view
-                <ul className="flex justify-start flex-wrap gap-10">
+                <ul className="flex flex-wrap gap-10 justify-start">
                     {
                         List.length > 0 ? (
                             List.map((e, i) => (
                                 <li key={i}>
                                     <Card prod={e} />
                                 </li>
-                        ))
+                            ))
                         ) : (
                         <div>loading</div>
                         )
