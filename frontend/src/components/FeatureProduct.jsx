@@ -21,7 +21,7 @@ function FeatureProduct({ productList }) {
       if (!isHover) {
         requestAnimationFrame(() => handleClick(false));
       }
-    }, 6000);
+    }, 4000);
 
     return () => clearInterval(intervalId);
   }, [isHover]);

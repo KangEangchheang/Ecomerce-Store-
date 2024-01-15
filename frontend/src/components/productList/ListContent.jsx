@@ -3,8 +3,9 @@ import thlist from '../../assets/icons/th-list.svg';
 import th from '../../assets/icons/th.svg';
 import thlistdisable from '../../assets/icons/th-list-disable.svg';
 import thdisable from '../../assets/icons/th-disable.svg';
+import Card from "../small/Card";
 
-function ListContent() {
+function ListContent({List}) {
     const [view,setView]=useState(false);
 
     function handleView(x){
@@ -13,13 +14,13 @@ function ListContent() {
         }
     }
     useEffect(()=>{
-
+        
     },[])
 
     return (
         <div className="flex grow flex-col">
             {/* sorting view for the content part */}
-            <div className='flex gap-1 items-center justify-end'>
+            <div className='mb-9 flex gap-1 items-center justify-end'>
                 <p className="mr-2">View</p>
                 <div className='flex gap-4 ml-1'>
                     <img onClick={()=>handleView(true)} className='w-6 cursor-pointer' src={view?thlist:thlistdisable} alt='loading'/>
@@ -27,9 +28,25 @@ function ListContent() {
                 </div>
             </div>
             {view?(
-                <div>list</div>
+                //this is list view
+                <ul className="flex flex-col gap-2">
+                    
+                </ul>
             ):(
-                <div>grid</div>
+                //this is grid view
+                <ul className="flex justify-start flex-wrap gap-10">
+                    {
+                        List.length > 0 ? (
+                            List.map((e, i) => (
+                                <li key={i}>
+                                    <Card prod={e} />
+                                </li>
+                        ))
+                        ) : (
+                        <div>loading</div>
+                        )
+                    }
+                </ul>
             )
             }
         </div>

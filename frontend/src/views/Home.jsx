@@ -34,8 +34,8 @@ export default function Home(){
             <div className="flex flex-col gap-16 mt-16 px-16">
                 <Category/>
                 <FeatureProduct productList={productList}/>
-                <NewArrival/>
-                <Promotion/>
+                <NewArrival productList={productList}/>
+                <Promotion productList={productList}/>
                 <Btn text="View All Products"/>
                 <Service/>
                 <BrandSlide/>
