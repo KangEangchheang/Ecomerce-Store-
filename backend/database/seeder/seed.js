@@ -5,6 +5,8 @@ const suppliers = require('./data/supplier.js');
 const {productImages,supplierImages} = require('./data/image.js');
 const discounts = require('./data/discount.js');
 const categories = require('./data/category.js');
+const users = require('./data/user.js');
+const banners = require('./data/banner.js')
 
 const pool = mysql.createPool({...dbConfig,connectionLimit: 10}).promise();
 
@@ -33,6 +35,14 @@ const seed = async () =>{
         for(let i = 0;i<supplierImages.length;i++){  
             await pool.query(`INSERT INTO image (image,supplier_id) VALUES (?,?)`,
             [...supplierImages[i]]);
+        }
+        for(let i = 0; i<users.length;i++){
+            await pool.query(`INSERT INTO user (user_type,username,password,phone_number,email,profile_image,isActive) VALUES (?,?,?,?,?,?,?)`,
+            [...users[i]]);
+        }
+        for(let i = 0; i<banners.length;i++){
+            await pool.query(`INSERT INTO banner_image (image) VALUES (?)`,
+            [...banners[i]]);
         }
         console.log('seeding success');
         process.exit();

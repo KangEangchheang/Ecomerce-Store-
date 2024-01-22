@@ -1,3 +1,8 @@
+
+const express = require('express');
+const cors = require('cors');
+const app = express();
+
 require('dotenv').config();
 const path = require('path');
 const productRoute = require('./Routes/product.route.js');
@@ -5,11 +10,9 @@ const imageRoute = require('./Routes/image.route.js');
 const categoryRoute = require('./Routes/category.route.js');
 const supplierRoute = require('./Routes/supplier.route.js');
 const discountRoute = require('./Routes/discount.route.js');
-const express = require('express');
-const cors = require('cors');
-const app = express();
+const userRoute = require('./Routes/user.route.js')
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 9000;
 
 //app.use is for creating middleware for api
 app.use(express.json());// parse json when sending data
@@ -22,6 +25,7 @@ app.use('/upload',imageRoute);
 app.use('/api/category',categoryRoute);
 app.use('/api/supplier',supplierRoute);
 app.use('/api/discount',discountRoute);
+app.use('/api/user', userRoute);
 
 // render basic html for our api route
 app.get('/', async(req,res)=>{

@@ -1,4 +1,4 @@
-const dbConfig = require ('../config.js');
+const dbConfig = require ('../config/config.js');
 const mysql = require('mysql2');
 
 const pool = mysql.createPool({...dbConfig,connectionLimit: 10}).promise();
@@ -12,6 +12,19 @@ const getProductById = async (req,res) =>{
     const id = req.params.id
     const [result] = await pool.query(`SELECT * FROM product WHERE id = ?`,[id]);
     return res.status(200).send(result);
+}
+
+// get product by name
+const getProductByName = async(req, res) => {
+    const name = req.params.name;
+
+    try{
+        const [result] = await pool.query(`SELECT * FROM product WHERE name LIKE ?;`, [`%${name}%`]);
+        return res.status(200).send(result);
+    } catch(error){
+        console.error('Error fetching product by productName:', error);
+        return res.status(500).send('Internal Server Error');
+    }
 }
 
 const updateProduct = async (req,res) =>{
@@ -50,6 +63,39 @@ const deleteProduct = async (req,res) =>{
     return res.status(200).send(`deleted ${result.affectedRows}`)
 }
 
+
+const getFeature = async(req, res) => {
+    try {
+        const [result] = await pool.query(`SELECT * FROM product`);
+        return res.status(200).send(result);
+    } catch (error) {
+        console.error('Error fetching featured products:', error);
+        throw error;
+    }
+}
+
+const getNewProducts = async (req, res) => {
+    try {
+        const [results] = await pool.query(`
+            SELECT *
+            FROM product
+            WHERE created_at BETWEEN NOW() - INTERVAL 7 DAY AND NOW()
+        `);
+
+        return res.status(200).json(results);
+    } catch (error) {
+        console.error('Error retrieving new products:', error);
+        return res.status(500).send('Internal Server Error');
+    }
+};
+
 module.exports = {
-    getProduct,getProductById,createProduct,updateProduct,deleteProduct
+    getProduct,
+    getProductById,
+    createProduct,
+    updateProduct,
+    deleteProduct,
+    getProductByName,
+    getFeature,
+    getNewProducts
 };

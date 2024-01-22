@@ -1,4 +1,4 @@
-const dbConfig = require ('../config.js');
+const dbConfig = require ('../config/config.js');
 const mysql = require('mysql2');
 
 
@@ -50,6 +50,22 @@ const deleteDiscount = async (req,res) =>{
     return res.status(200).send(`deleted ${result.affectedRows}`)
 }
 
+const getActiveDiscounts = async (req, res) => {
+    try {
+        const [results] = await pool.query(`
+            SELECT *
+            FROM discount
+            WHERE end_discount > NOW();
+        `);
+
+        return res.status(200).json(results);
+    } catch (error) {
+        console.error('Error retrieving active discounts:', error);
+        return res.status(500).send('Internal Server Error');
+    }
+};
+
 module.exports = {
-    getDiscount,getDiscountById,createDiscount,updateDiscount,deleteDiscount
+    getDiscount,getDiscountById,createDiscount,updateDiscount,deleteDiscount,
+    getActiveDiscounts
 };
