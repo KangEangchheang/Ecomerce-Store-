@@ -1,9 +1,11 @@
-import {useLocation,useNavigate} from 'react-router-dom'   
+import {useLocation} from 'react-router-dom'   
 import SideMenu from '../components/productList/SideMenu';
 import ListContent from '../components/productList/ListContent';
-import { useState,useEffect, useRef } from 'react';
+import { useState,useEffect} from 'react';
 import  axios  from 'axios';
 import NavigationTab from '../components/productList/NavigationTab';
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 
 function ProductList() {
     const Categories=['Keyboard','Mouse','Monitor','Gamepad'];
@@ -17,13 +19,29 @@ function ProductList() {
     const handleSort = (s) =>{
         setSort({...sort,...s});
     }
-    
     useEffect(()=>{
         const fetchData = async () => {
             try {
-                const res = await axios.get('http://localhost:5555/products/feature');
-                setProductList(res.data);
-                
+                let res = await axios.get(`${BASE_URL}/products`);
+                var products = res.data;
+                res = await axios.get(`${BASE_URL}/discount/`);
+                var discounts = res.data;
+                //hard coded instead of using database relationship lmao
+                for (let i = 0; i < products.length; i++) {
+                    const product = products[i];
+
+                    // Find the corresponding discount in the discounts array
+                    const discount = discounts.find(d => d.id === product.discount_id);
+
+                    // If a discount is found, add its data to the product
+                    if (discount) {
+                        products[i] = {
+                            ...product,
+                            discount: { ...discount }, // Using spread operator to add discount data
+                        };
+                    }
+                }
+                setProductList(products);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }

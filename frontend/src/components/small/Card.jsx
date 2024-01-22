@@ -24,7 +24,7 @@ function Card({prod}) {
               <div className="w-[80px] h-[20px] flex items-center justify-center top-1 left-1 opacity-80 rounded-r-[12px] shadow-xl bg-restock absolute text-[12px] font-[Poppins] text-white font-[400]">out of stock</div>
             ): 
             (
-             prod.discount.percent > 0 &&
+             prod.discount_id != null &&
              <div className="w-[80px] h-[20px] flex items-center justify-center top-1 left-1 opacity-80 rounded-r-[12px] shadow-xl bg-discount absolute text-[12px] font-[Poppins] text-white font-[400]">{prod.discount.percent}%</div>
             ) 
           }
@@ -52,9 +52,9 @@ function Card({prod}) {
             <span className="text-secondary text-[12px] font-[500] " id='addCart'>Add To Cart</span>
           </div>
         </div>
-        <div className="w-full mt-2 cursor-pointer" onClick={handleClick}>
+        <div className="w-full mt-2 cursor-pointer flex flex-col grow justify-between" onClick={handleClick}>
           <div className="txt text-center font-[500] text-[14px] leading-[15px]">{prod.name}</div>
-          <Price price={prod.price} discount={prod.discount.percent}/>
+          <Price price={prod.price} discount={prod.discount_id !=null?prod.discount.percent:null}/>
         </div>
       </div>
     </div>

@@ -26,9 +26,10 @@ const updateProduct = async (req,res) =>{
         discount_id = ?,
         supplier_id = ?,
         category_id = ?,
+        isfeatured = ? 
         WHERE id = ?`
     ,[
-        product.name, product.description,product.quantity,product.price,product.discount_id,product.supplier_id,product.category_id,id
+        product.name, product.description,product.quantity,product.price,product.discount_id,product.supplier_id,product.category_id,product.isfeatured,id
     ]);
     return res.status(200).send(`Updated ${result.affectedRows} row(s)`);
 }

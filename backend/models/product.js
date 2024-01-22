@@ -8,7 +8,7 @@ const model = `CREATE TABLE IF NOT EXISTS product (
     discount_id INT,
     supplier_id INT,
     category_id INT,
-    isfeatured BOOLEAN DEFAULT true,
+    isfeatured BOOLEAN DEFAULT false,
     
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

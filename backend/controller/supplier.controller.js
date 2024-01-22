@@ -20,7 +20,7 @@ const updateSupplier = async (req,res) =>{
     const id = req.params.id;
     const [result] = await pool.query(`
         UPDATE supplier SET 
-        name = ?,
+        name = ?
         WHERE id = ?`
     ,[name,id]);
     return res.status(200).send(`Updated ${result.affectedRows} row(s)`);

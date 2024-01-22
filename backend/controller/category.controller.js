@@ -20,7 +20,7 @@ const updateCategory = async (req,res) =>{
     const id = req.params.id;
     const [result] = await pool.query(`
         UPDATE category SET 
-        name = ?,
+        name = ?
         WHERE id = ?`
     ,[name,id]);
     return res.status(200).send(`Updated ${result.affectedRows} row(s)`);

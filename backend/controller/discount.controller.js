@@ -26,7 +26,7 @@ const updateDiscount = async (req,res) =>{
         percent = ?,
         minimum_pay = ?,
         start_discount = ?,
-        end_discount = ?,
+        end_discount = ?
 
         WHERE id = ?`
     ,[dis.name,dis.description,dis.discount_type,dis.percent,dis.minimum_pay,dis.start_discount,dis.end_discount,

@@ -50,7 +50,7 @@ function ListContent({List}) {
                         List.length > 0 ? (
                             List.map((e, i) => (
                                 <li key={i}>
-                                    <Card prod={e} />
+                                    <Card prod={e}/>
                                 </li>
                             ))
                         ) : (
