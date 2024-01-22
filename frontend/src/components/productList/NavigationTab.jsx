@@ -5,16 +5,17 @@ function NavigationTab({param}) {
         nav(r);
     }
     return ( 
-        <div className='flex gap-1 items-baseline text-sm mt-8 px-16 cursor-pointer' >
-            <span onClick={()=>Navigate("/products")}>Products</span>
+        <div className='flex gap-1 items-baseline text-sm'>
+            <span onClick={()=>Navigate('/')} className='text-text1  cursor-pointer' >Home</span>
             <span>{'>'}</span>
-            {param[1]!='products' && param[1] != 'products/'?<div><span onClick={()=>Navigate("/"+param[1])}>{param[1]}</span>
+            <span className='text-text1'>Products</span>
+            <span>{'>'}</span>
+            {param[1]!='products' && param[1] != 'products/'?<div><span className='text-text1' onClick={()=>Navigate("/"+param[1])}>{param[1]}</span>
             <span>{'>'}</span></div>
             :<div></div>}
             {param.length === 3 && param[2]!==""?(
                 <div>
-                    <span>{param[2]}</span>
-                    <span>{'>'}</span>
+                    <span className='text-secondary1 font-semibold'>{param[2]}</span>
                 </div>
             ):(<div></div>)}
         </div>

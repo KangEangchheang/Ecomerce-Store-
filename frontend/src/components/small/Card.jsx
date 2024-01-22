@@ -11,7 +11,7 @@ function Card({prod}) {
   }
   const handleClick = () =>{
 
-    navigate(`/products/${prod.id}`);
+    navigate(`/product/${prod.id}`);
     window.scrollTo(0, 0);
 
   }

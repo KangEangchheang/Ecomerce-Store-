@@ -7,7 +7,7 @@ function Review({review}) {
     for(let i=0;i<Math.round(review.star_rating);i++){
         star.push(<img key={i} className='h-4' src={gold_star}></img>)
     }
-    for(let i=0;i<(5-Math.round(review.star_rating));i++){
+    for(let i=5;i>(Math.round(review.star_rating));i--){
         star.push(<img key={i} className='h-4' src={gray_star}></img>)
     }
     return ( 

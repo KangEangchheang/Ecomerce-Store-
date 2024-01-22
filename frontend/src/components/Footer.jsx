@@ -3,7 +3,7 @@ import telegram from '../assets/icons/telegram.png';
 
 function Footer() {
     return ( 
-        <div className="bg-text2 w-full py-8 text-text text-sm flex justify-center gap-20 font-light flex-wrap mt-10">
+        <div id="footer" className="bg-text2 w-full py-8 text-text text-sm flex justify-center gap-20 font-light flex-wrap mt-10">
             <div className="flex flex-col gap-3">
                 <h1 className="text-xl font-semibold font-serif">iFour</h1>
                 <div className="font-semibold">Subscribe</div>

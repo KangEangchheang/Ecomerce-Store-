@@ -1,20 +1,88 @@
-
-import { Link, useLocation } from "react-router-dom"
-
+import cart from '../assets/icons/cart.svg'
+import user from '../assets/icons/user.svg';
+import { useLocation,useNavigate,Link } from "react-router-dom"
+import search from '../assets/icons/Search.svg';
+import arrowdown from '../assets/icons/arrowdown.svg';
+import phone from '../assets/icons/PhoneCall 1.svg';
+import { useEffect, useState } from 'react';
+import CategoryNav from './NavBar/CategoryNav';
+import SupportNav from './NavBar/SupportNav';
 export default function Navbar(){
+    const nav = useNavigate();
+    const [isMenuOpen,setMenuOpen] = useState([]);
+    const MenuComponent = [<CategoryNav key={1}/>,
+                            <SupportNav key={3}/>
+                        ]
     const location = useLocation(); //get the param of current url locaiton
+    useEffect(()=>{
+        setMenuOpen([false,false]);
+    },[location.pathname]);
+    function routeUser(){
+        nav('/user/1');
+    }
+    function routeCart(){
+        nav('/user/1/cart');
+    }
+
+    function handleMenu(m){
+        const array = [false,false]
+        const toggleValue = !isMenuOpen[m];
+        array[m] = toggleValue;
+        setMenuOpen(array);
+    }
+
     return(
-        <nav className="flex justify-between mt-10 items-end px-16">
-            <div className="flex gap-40">
+        <nav className='flex flex-col relative'>
+            {/* search and account cart */}
+            <div className="flex justify-between items-center px-16 py-4">
                 <h1 className="text-xl font-semibold font-serif">iFour</h1>
-                <div className="flex gap-10">
-                    <Link to="/" className={location.pathname === '/'? 'underline': null}>Home</Link>
-                    <Link to="/contact" className={location.pathname === '/contact'? 'underline': null}>Contact</Link>
-                    <p>About</p>
+                <div className='flex relative'>
+                    <div className='border-neutral-200 border-2 rounded-l-full border-r-0'>
+                        <img className='h-4 left-4 top-1/2 -translate-y-2/4 absolute' src={search} alt='search'/>
+                    <input className="text-xs text-primary1 py-2 px-10 rounded-full flex w-[60ch] outline-none border-none" placeholder="what are you looking for?"/>
+                    </div>
+                    <button className='border-2 border-secondary1 text-xs font-medium bg-secondary1 text-primary px-6 py-2 rounded-r-full'>Search</button>
+                </div>
+                <div className='flex gap-6'>
+                    <img className='cursor-pointer w-8' onClick={()=>routeCart()} src={cart}/>
+                    <img className='cursor-pointer w-8' onClick={()=>routeUser()} src={user}/>
                 </div>
             </div>
-            <div>
-                <input className="text-xs text-text1 py-2 px-3 w-72 outline-none border-primary1 border-solid border-2 rounded-[5px]" placeholder="what are you looking for?"/>
+            {/* homepage menu */}
+            <div className='px-16 text-sm flex justify-between text-primary1 font-medium border-y-2 border-neutral-200'>
+                <div className='flex cursor-pointer'>
+                    <Link className='py-4 px-8 hover:bg-neutral-200' to="/">Home</Link>
+                    <Link className='py-4 px-8 hover:bg-neutral-200' to="/feature">Feature Products</Link>
+                    
+                    <div onClick={()=>handleMenu(0)} className={`flex items-center gap-2 hover:bg-neutral-200 
+                    ${isMenuOpen[0]?'bg-neutral-200 border-x-2': ''}`}>
+                        <p className='py-4 px-10'>Shop by Category</p>
+                        <div className='h-full flex items-center'>
+                            <img className='cursor-pointer pr-4 flex flex-grow rounded-full' src={arrowdown}/>
+                        </div>
+                    </div>
+                    
+                    
+                    <div onClick={()=>handleMenu(1)} className={` flex items-center gap-2 hover:bg-neutral-200 
+                    ${isMenuOpen[1]?'bg-neutral-200 border-x-2': ''}`}>
+                        <p className='py-4 px-10'>Support</p>
+                        <div className='h-full flex items-center'>
+                            <img className='cursor-pointer pr-4 flex flex-grow rounded-full' src={arrowdown}/>
+                        </div>
+                    </div>
+
+                </div>
+                <div className='flex gap-2 items-center'>
+                    <img className='h-6' src={phone} alt='loading'/>
+                    <p>+855 15-987-990</p>
+                </div>
+            </div>
+            <div className='absolute z-10 -bottom-1/2 w-full'>
+                    {
+                        isMenuOpen.map((e,i)=>(
+                            e? MenuComponent[i]:null
+                        ))
+                    }
             </div>
         </nav>
     )

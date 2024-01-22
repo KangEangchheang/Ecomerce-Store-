@@ -35,12 +35,13 @@ function ProductList() {
     
     return ( 
         <>
-            {/* product mini navigation above the product image */}
-            <NavigationTab param={param}/>
-
             <div className="flex gap-6 px-16 my-8 w-full">
             {/* this the acutal content of this page separate by 2 container for menu and product list */}
-                <SideMenu Category={Categories} updateSort={handleSort}/>
+                <div className='flex flex-col gap-6 w-[14rem]'>
+                    {/* product mini navigation above the product image */}
+                    <NavigationTab param={param}/>
+                    <SideMenu Category={Categories} updateSort={handleSort}/>
+                </div>
                 <ListContent List={productList}/>
             </div>
         </>

@@ -28,7 +28,7 @@ function NewArrival({productList}) {
                 {productList.length > 0 ? (
                 productList.map((e, i) => (
                     <li key={i}>
-                    <Card prod={e} />
+                        <Card prod={e} />
                     </li>
                 ))
                 ) : (

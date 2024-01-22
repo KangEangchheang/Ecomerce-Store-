@@ -4,6 +4,7 @@ import th from '../../assets/icons/th.svg';
 import thlistdisable from '../../assets/icons/th-list-disable.svg';
 import thdisable from '../../assets/icons/th-disable.svg';
 import Card from "../small/Card";
+import CardList from "./CardList";
 
 function ListContent({List}) {
     const [view,setView]=useState(false);
@@ -29,12 +30,22 @@ function ListContent({List}) {
             </div>
             {view?(
                 //this is list view
-                <ul className="flex flex-col gap-2">
-                    
+                <ul className="flex flex-col">
+                    {
+                        List.length > 0 ? (
+                            List.map((e, i) => (
+                                <li key={i}>
+                                    <CardList prod={e} />
+                                </li>
+                            ))
+                        ) : (
+                        <div>loading</div>
+                        )
+                    }
                 </ul>
             ):(
                 //this is grid view
-                <ul className="flex flex-wrap gap-10 justify-start">
+                <ul className="flex flex-wrap w-full gap-10 justify-start">
                     {
                         List.length > 0 ? (
                             List.map((e, i) => (
