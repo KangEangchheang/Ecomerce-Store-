@@ -46,6 +46,39 @@ const createSupplierImage = async (req,res)=>{
         });
     }
 }
+const getSupplierImage = async (req,res) =>{
+    try{
+        const id = req.params.id;
+        const [result] = await pool.query(`SELECT * FROM image WHERE supplier_id = ? LIMIT 1`,[id]);
+        return res.status(200).send(result[0]);
+    }catch(e){
+        return res.status(500).json({
+            "message": "Internal Server Error"
+        });
+    }
+}
+const getProductImage = async (req,res) =>{
+    try{
+        const id = req.params.id;
+        const [result] = await pool.query(`SELECT * FROM image WHERE product_id = ?`,[id]);
+        return res.status(200).send(result);
+    }catch(e){
+        return res.status(500).json({
+            "message": "Internal Server Error"
+        });
+    }
+}
+const getSingleProductImage = async (req,res) =>{
+    try{
+        const id = req.params.id;
+        const [result] = await pool.query(`SELECT * FROM image WHERE product_id = ? LIMIT 1`,[id]);
+        return res.status(200).send(result[0]);
+    }catch(e){
+        return res.status(500).json({
+            "message": "Internal Server Error"
+        });
+    }
+}
 module.exports = {
-   createProductImage,createSupplierImage,deleteImage
+   createProductImage,createSupplierImage,deleteImage,getSupplierImage,getProductImage
 };

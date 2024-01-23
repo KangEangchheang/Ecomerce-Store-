@@ -11,7 +11,7 @@ const getProduct = async (req,res) =>{
 const getProductById = async (req,res) =>{
     const id = req.params.id
     const [result] = await pool.query(`SELECT * FROM product WHERE id = ?`,[id]);
-    return res.status(200).send(result);
+    return res.status(200).send(result[0]);
 }
 
 // get product by name
@@ -67,7 +67,7 @@ const deleteProduct = async (req,res) =>{
 
 const getFeature = async(req, res) => {
     try {
-        const [result] = await pool.query(`SELECT * FROM product`);
+        const [result] = await pool.query(`SELECT * FROM product WHERE isfeatured = ? `,[1]);
         return res.status(200).send(result);
     } catch (error) {
         console.error('Error fetching featured products:', error);
@@ -80,7 +80,7 @@ const getNewProducts = async (req, res) => {
         const [results] = await pool.query(`
             SELECT *
             FROM product
-            WHERE created_at BETWEEN NOW() - INTERVAL 7 DAY AND NOW()
+            WHERE created_at BETWEEN NOW() - INTERVAL 21 DAY AND NOW()
         `);
 
         return res.status(200).json(results);

@@ -1,4 +1,4 @@
-const dbConfig = require ('../../config.js');
+const dbConfig = require ('../../config/config.js');
 const mysql = require('mysql2');
 const products = require('./data/products.js')
 const suppliers = require('./data/supplier.js');

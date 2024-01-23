@@ -30,7 +30,7 @@ const products = [
         'GF65 Thin 10SDR',
         'This is my laptop i use xd',
         2,
-        989,
+        980,
         2,
         1,
         3

@@ -21,10 +21,11 @@ const fileFilter = (req,file,callback) => {
 };
 const upload = multer({
     storage:storage,
-    limits:{fileSize:2000000},//this is 2mb
+    limits:{fileSize:5000000},//this is 2mb
     fileFilter:fileFilter
 });
-
+img.get('/suppliers/:id',controller.getSupplierImage);
+img.get('/products/:id',controller.getProductImage);
 img.post('/suppliers',upload.array('supplier'),controller.createSupplierImage);
 img.post('/products',upload.array('products'),controller.createProductImage);
 img.delete('/delete/:name',controller.deleteImage);
