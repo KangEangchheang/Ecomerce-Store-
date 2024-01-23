@@ -9,6 +9,7 @@ import Review from '../components/productdetail/Review';
 import gold_star from '../assets/icons/gold_star.svg';
 import gray_star from '../assets/icons/gray_star.svg';
 import axios from 'axios';
+import Related from '../components/productdetail/Related';
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const IMAGE_URL = import.meta.env.VITE_IMAGE_URL;
 const STATIC_URL = import.meta.env.VITE_STATIC_URL;
@@ -18,6 +19,7 @@ function ProductDetail() {
     const [isReview,setIsReview] = useState(false);
     const [category,setCategory] = useState({name:''});
     const [image,setImage] = useState([]);
+    const [related,setRelated] = useState([]);
     const [product,setProduct] = useState({
         image:[]
     })
@@ -27,6 +29,7 @@ function ProductDetail() {
     function toggleOff(){
         setIsReview(false);
     }
+
     useEffect(()=>{
         const fetchData = async () =>{
            try {
@@ -45,7 +48,7 @@ function ProductDetail() {
                 res = await axios.get(`${IMAGE_URL+'/products/' + product.id}`);
                 var image = res.data;
                 image.map((e,i)=>(image[i] = `${STATIC_URL+image[i].image}` ))
-                console.log(image)
+
                 setCategory(cat[0]);
                 setProduct(product);
                 setImage([...image,...image,...image]);
@@ -55,6 +58,7 @@ function ProductDetail() {
         }
         fetchData();
     },[])
+
     const star = [];
     for(let i=0;i<Math.round(product.star_rating);i++){
         star.push(<img key={i} className='h-4' src={gold_star}></img>)
@@ -100,17 +104,9 @@ function ProductDetail() {
             </div>
 
             {/* related product */}
-            <div className='my-12'>  
-                <h1 className='font-semibold text-lg mb-4'>Related products</h1>
-                <div className='flex gap-4 justify-between'>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                </div>
-            </div>
+            {/* i set condition to only render when category isnt null because it will try to render with null data first and cuz many error with axios */}
+            {category.name!=''&&<Related catName={category.name} currentProductId={product.id}/>}
+
             {/* description and review */}
             <div className='flex flex-col w-full items-center'>
                 <div className='grid grid-cols-2 border-2 border-solid border-secondary1 rounded-sm'>

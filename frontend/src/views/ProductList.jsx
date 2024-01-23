@@ -10,32 +10,67 @@ const STATIC_URL = import.meta.env.VITE_STATIC_URL;
 
 
 function ProductList() {
-    const Categories=['Keyboard','Mouse','Monitor','Gamepad'];
-
     const location = useLocation();
     const param = location.pathname.split('/');
     const [productList,setProductList] = useState([]);
+    
+    //sort
     const [sort,setSort]=useState({
-        price:'',
+        price:null,
+        date:'newest',
         discountOnly:false,
     })
     const handleSort = (s) =>{
         setSort({...sort,...s});
     }
+    const sortPrice = (list,type) =>{
+        const sortType = ['lowhigh','highlow'];
+        switch(type){
+            case sortType[0]:
+                list.sort((a,b)=>a.price-b.price);
+                break;
+            case sortType[1]:
+                list.sort((a,b)=>b.price-a.price);
+                break;
+            default:
+                console.log("unknown sort type");
+                break;
+        }
+        return list;
+    }
+
+    const handleSortDate= async() =>{
+        //query data by newest, since default is sort by default we dont need to add another condition
+        if(sort.date === 'newest'){
+            if(param.length<3){
+                if(param[1] === 'products'){
+                    return await axios.get(`${BASE_URL}/products/newestproduct`);
+                }else{
+                    return await axios.get(`${BASE_URL}/products/newestfeature`);
+                }
+            }else{
+                return await axios.get(`${BASE_URL}/products/newestcategory/${param[2]}`);
+            }
+        }else{
+            if(param.length<3){
+                if(param[1] === 'products'){
+                    return await axios.get(`${BASE_URL}/products`);
+                }else{
+                   return await axios.get(`${BASE_URL}/products/feature`);
+                }
+            }else{
+                return await axios.get(`${BASE_URL}/products/category/${param[2]}`);
+            }
+        }
+    }
+
     useEffect(()=>{
         const fetchData = async () => {
             try {
-                var res;
-                if(param.length<3){
-                    if(param[1] === 'products'){
-                        res = await axios.get(`${BASE_URL}/products`);
-                    }else{
-                        res = await axios.get(`${BASE_URL}/products/feature`);
-                    }
-                }else{
-                    res = await axios.get(`${BASE_URL}/products/category/${param[2]}`);
-                }
+                //too many line of condition so i move it elsewhere
+                var res = await handleSortDate();
                 var products = res.data;
+                
                 res = await axios.get(`${BASE_URL}/discount/`);
                 var discounts = res.data;
                 res = await axios.get(`${IMAGE_URL}/products`);
@@ -62,15 +97,21 @@ function ProductList() {
                     }else{
                         products[i] = { ...product };
                     }
+                    
                 }
-                setProductList([...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products]);
+                //apply sort by price
+                if(sort.price !=null && sort.price != 'norange'){
+                    products = sortPrice(products,sort.price);
+                }
+
+                setProductList(products);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         };
         fetchData();
-    },[location.pathname]);
-
+    },[location.pathname,sort]);
+    
     return ( 
         <>
             <div className="flex gap-6 px-16 my-8 w-full">
@@ -78,7 +119,7 @@ function ProductList() {
                 <div className='flex flex-col gap-6 w-[14rem]'>
                     {/* product mini navigation above the product image */}
                     <NavigationTab param={param}/>
-                    <SideMenu Category={Categories} updateSort={handleSort}/>
+                    <SideMenu updateSort={handleSort}/>
                 </div>
                 <ListContent List={productList}/>
             </div>

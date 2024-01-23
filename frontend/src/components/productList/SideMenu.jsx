@@ -11,7 +11,7 @@ function SideMenu({Category,updateSort}) {
     const [URL,setURL] = useState(location.pathname.split('/'));
     const [isDiscountOnly,setDiscountOnly] = useState(false);
     useEffect(()=>{
-
+        
     },[location.pathname]);
 
     function handleURL(cat){
@@ -55,14 +55,14 @@ function SideMenu({Category,updateSort}) {
     return ( 
         <div className='flex flex-col gap-4 min-w-[12rem] pt-4 pr-4'>
             {/* this is sort container */}
-            <div className='flex flex-col gap-1'>
+            <div className='flex flex-col gap-4'>
                 <p className='mb-4 font-semibold'>Sort by</p>
                 <div className='flex items-center'>
                     <p>Price:</p>
                     <select id='selectPrice' onChange={handlePrice} value={sortPrice} className='pl-2 bg-transparent text-sm'>
                         <option value='norange'>No Range</option>
-                        <option value='lowhight'>low to high</option>
-                        <option value='hightlow'>high to low</option>
+                        <option value='lowhigh'>low to high</option>
+                        <option value='highlow'>high to low</option>
                     </select>
                 </div>
                 <div className='flex items-center'>
@@ -75,7 +75,7 @@ function SideMenu({Category,updateSort}) {
             </div>
             {/* sorting by popular or discount*/}
             <div className='flex flex-col gap-1'>
-                <label htmlFor='discount'><input className='mr-2 cursor-pointer' id='discount' type='checkbox' checked={isDiscountOnly} onChange={()=>toggleDiscount()}/>Discount</label>
+                {/* <label htmlFor='discount'><input className='mr-2 cursor-pointer' id='discount' type='checkbox' checked={isDiscountOnly} onChange={()=>toggleDiscount()}/>Discount</label> */}
                 
             </div>
 

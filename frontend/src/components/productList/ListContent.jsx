@@ -8,12 +8,12 @@ import CardList from "./CardList";
 import Pagination from './Pagination';
 
 function ListContent({List}) {
-    const [view,setView]=useState(true);
+    const [view,setView]=useState(true);//set default view option true = list, false = grid
     const ProductList = List;
+
     //pagination
     const [currentPage,setCurrentpage] = useState(1);
     const [itemPerPage] = useState(12);
-     //pagination
     //get current prods
     const indexLast = currentPage * itemPerPage;
     const indexFirst = indexLast - itemPerPage;
@@ -30,7 +30,7 @@ function ListContent({List}) {
     }
     useEffect(()=>{
         
-    },[currentPage])
+    },[currentPage])//current page in the array to auto update this component when currentPage change
 
     return (
         <div className="flex grow flex-col">
@@ -74,7 +74,8 @@ function ListContent({List}) {
                 </ul>
             )
             }
-            <Pagination total={ProductList.length} itemPerPage={itemPerPage} paginate={handlePaginate} currentPage={currentPage}/>
+            {/* this mean that it only show the page option if there is more than 2 page */}
+            {ProductList > itemPerPage && <Pagination total={ProductList.length} itemPerPage={itemPerPage} paginate={handlePaginate} currentPage={currentPage}/>}
         </div>
     )
 }

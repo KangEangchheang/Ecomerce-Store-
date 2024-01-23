@@ -7,6 +7,13 @@ const getProduct = async (req,res) =>{
     const [result] = await pool.query(` SELECT * FROM product`);
     return res.status(200).send(result);
 }
+const getRelatedProduct = async (req,res) =>{
+    const name = req.params.name;
+
+    const [cat] =await pool.query(`SELECT * FROM category WHERE name LIKE ? `,[`%${name}%`]);
+    const [result] = await pool.query(`SELECT * FROM product WHERE category_id = ? LIMIT 5`, [cat[0].id]);
+    return res.status(200).send(result);
+}
 
 const getProductById = async (req,res) =>{
     const id = req.params.id
@@ -31,6 +38,17 @@ const getProductByCategoryName = async(req,res)=>{
     try{
         const [cat] =await pool.query(`SELECT * FROM category WHERE name LIKE ? `,[`%${name}%`]);
         const [result] = await pool.query(`SELECT * FROM product WHERE category_id = ?`, [cat[0].id]);
+        return res.status(200).send(result);
+    } catch(error){
+        console.error('Error fetching product by productName:', error);
+        return res.status(500).send('Internal Server Error');
+    }
+}
+const getNewestProductByCategoryName = async(req,res)=>{
+    const name = req.params.name;
+    try{
+        const [cat] =await pool.query(`SELECT * FROM category WHERE name LIKE ? `,[`%${name}%`]);
+        const [result] = await pool.query(`SELECT * FROM product WHERE category_id = ? ORDER BY created_at DESC`, [cat[0].id]);
         return res.status(200).send(result);
     } catch(error){
         console.error('Error fetching product by productName:', error);
@@ -99,9 +117,37 @@ const getNewProducts = async (req, res) => {
         return res.status(500).send('Internal Server Error');
     }
 };
+const getNewestProducts = async (req, res) => {
+    try {
+        const [results] = await pool.query(`
+            SELECT *
+            FROM product
+            ORDER BY created_at DESC
+        `);
 
+        return res.status(200).json(results);
+    } catch (error) {
+        console.error('Error retrieving new products:', error);
+        return res.status(500).send('Internal Server Error');
+    }
+};
+const getNewestFeatureProduct = async (req, res) => {
+    try {
+        const [results] = await pool.query(`
+            SELECT *
+            FROM product
+            WHERE isfeatured = '1' ORDER BY created_at DESC
+        `);
+
+        return res.status(200).json(results);
+    } catch (error) {
+        console.error('Error retrieving new products:', error);
+        return res.status(500).send('Internal Server Error');
+    }
+};
 module.exports = {
     getProduct,
+    getRelatedProduct,
     getProductById,
     createProduct,
     updateProduct,
@@ -109,5 +155,8 @@ module.exports = {
     getProductByName,
     getFeature,
     getNewProducts,
-    getProductByCategoryName
+    getProductByCategoryName,
+    getNewestFeatureProduct,
+    getNewestProducts,
+    getNewestProductByCategoryName
 };
