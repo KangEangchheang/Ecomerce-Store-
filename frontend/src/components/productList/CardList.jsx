@@ -1,13 +1,13 @@
 import {useNavigate} from 'react-router-dom';
 import gold_star from '../../assets/icons/gold_star.svg';
 import gray_star from '../../assets/icons/gray_star.svg';
-import Price from '../small/price';
+import Price from '../small/Price';
 function CardList({prod}) {
     const navigate = useNavigate();
     const textLimit = 260;
     if (!prod) {
-    return <div>no data</div>;
-  }
+        return <div>no data</div>;
+    }
     const handleClick = () =>{
         navigate(`/product/${prod.id}`);
         window.scrollTo(0, 0);

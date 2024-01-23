@@ -57,7 +57,7 @@ function ProductDetail() {
             }
         }
         fetchData();
-    },[])
+    },[location.pathname])
 
     const star = [];
     for(let i=0;i<Math.round(product.star_rating);i++){

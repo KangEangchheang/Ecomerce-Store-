@@ -1,12 +1,12 @@
 import cart from '../assets/icons/cart.svg'
 import user from '../assets/icons/user.svg';
 import { useLocation,useNavigate,Link } from "react-router-dom"
-import search from '../assets/icons/Search.svg';
 import arrowdown from '../assets/icons/arrowdown.svg';
 import phone from '../assets/icons/PhoneCall 1.svg';
 import { useEffect, useState } from 'react';
 import CategoryNav from './NavBar/CategoryNav';
 import SupportNav from './NavBar/SupportNav';
+import Search from './NavBar/Search';
 export default function Navbar(){
     const nav = useNavigate();
     const [isMenuOpen,setMenuOpen] = useState([]);
@@ -36,13 +36,7 @@ export default function Navbar(){
             {/* search and account cart */}
             <div className="flex justify-between items-center px-16 py-4">
                 <h1 className="text-xl font-semibold font-serif">iFour</h1>
-                <div className='flex relative'>
-                    <div className='border-neutral-200 border-2 rounded-l-full border-r-0'>
-                        <img className='h-4 left-4 top-1/2 -translate-y-2/4 absolute' src={search} alt='search'/>
-                    <input className="text-xs text-primary1 py-2 px-10 rounded-full flex w-[60ch] outline-none border-none" placeholder="what are you looking for?"/>
-                    </div>
-                    <button className='border-2 border-secondary1 text-xs font-medium bg-secondary1 text-primary px-6 py-2 rounded-r-full'>Search</button>
-                </div>
+                <Search/>
                 <div className='flex gap-6'>
                     <img className='cursor-pointer w-8' onClick={()=>routeCart()} src={cart}/>
                     <img className='cursor-pointer w-8' onClick={()=>routeUser()} src={user}/>
