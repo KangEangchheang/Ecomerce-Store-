@@ -46,7 +46,7 @@ const createSupplierImage = async (req,res)=>{
         });
     }
 }
-const getSupplierImage = async (req,res) =>{
+const getSupplierImageById = async (req,res) =>{
     try{
         const id = req.params.id;
         const [result] = await pool.query(`SELECT * FROM image WHERE supplier_id = ? LIMIT 1`,[id]);
@@ -57,7 +57,7 @@ const getSupplierImage = async (req,res) =>{
         });
     }
 }
-const getProductImage = async (req,res) =>{
+const getProductImageById = async (req,res) =>{
     try{
         const id = req.params.id;
         const [result] = await pool.query(`SELECT * FROM image WHERE product_id = ?`,[id]);
@@ -68,11 +68,29 @@ const getProductImage = async (req,res) =>{
         });
     }
 }
-const getSingleProductImage = async (req,res) =>{
+
+const getProductImage = async (req,res) =>{
     try{
-        const id = req.params.id;
-        const [result] = await pool.query(`SELECT * FROM image WHERE product_id = ? LIMIT 1`,[id]);
-        return res.status(200).send(result[0]);
+        const [result] = await pool.query(`
+        SELECT
+            product_id,
+            MIN(id) AS selected_id,
+            MIN(image) AS selected_image
+        FROM image
+        WHERE product_id IS NOT NULL
+        GROUP BY product_id
+        `);
+        return res.status(200).send(result);
+    }catch(e){
+        return res.status(500).json({
+            "message": "Internal Server Error"
+        });
+    }
+}
+const getSupplierImage = async (req,res) =>{
+    try{
+        const [result] = await pool.query(`SELECT image FROM image WHERE supplier_id IS NOT NULL`);
+        return res.status(200).send(result);
     }catch(e){
         return res.status(500).json({
             "message": "Internal Server Error"
@@ -80,5 +98,7 @@ const getSingleProductImage = async (req,res) =>{
     }
 }
 module.exports = {
-   createProductImage,createSupplierImage,deleteImage,getSupplierImage,getProductImage
+   createProductImage,createSupplierImage,deleteImage,getSupplierImage,
+   getProductImage,getProductImageById,
+   getSupplierImageById
 };

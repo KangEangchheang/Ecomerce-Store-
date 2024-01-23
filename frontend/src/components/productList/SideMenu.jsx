@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom"
 function SideMenu({Category,updateSort}) {
     const [sortPrice,setSortPrice] = useState('');
     const [sortDate,setSortDate] = useState('');
-    const [Categories,setCategory] = useState(Category);
+    // const [Categories,setCategory] = useState(Category);
     const location = useLocation();
     const nav = useNavigate();
     const [URL,setURL] = useState(location.pathname.split('/'));

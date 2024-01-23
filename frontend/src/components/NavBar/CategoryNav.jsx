@@ -2,13 +2,13 @@ import {useNavigate} from 'react-router-dom'
 function CategoryNav() {
     const nav = useNavigate();
     const categories = ['All Products','Keyboard','Monitor','Mouse',
-    'Gamepad','Gaming Chair','Laptop','Headphones','Drawing Tablet'];
+    'Gamepad','Gaming_Chair','Laptop','Headphones','Drawing_Tablet'];
     function handleRoute(e,i){
         if(e==='All Products'){
             nav('/products');
         }
         else{
-            const temp = categories[i].toLowerCase().replace(" ", "")
+            const temp = categories[i]
             nav(`/products/${temp}`)
         }
     }

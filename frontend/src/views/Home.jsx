@@ -15,13 +15,13 @@ export default function Home(){
     const nav = useNavigate();
     useEffect(()=>{
         const fetchData = async () => {
-            try {
-                const res = await axios.get('http://localhost:5555/products/feature');
-                setProductList(res.data);
+            // try {
+            //     const res = await axios.get('http://localhost:5555/products/feature');
+            //     setProductList(res.data);
                 
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
+            // } catch (error) {
+            //     console.error('Error fetching data:', error);
+            // }
         };
 
         fetchData();
@@ -37,11 +37,11 @@ export default function Home(){
                 </div>
             </div>
             <div className="flex flex-col gap-10 mt-16 px-16">
-                <Category/>
+                {/* <Category/> */}
                 <FeatureProduct productList={productList}/>
                 <NewArrival productList={productList}/>
                 <Promotion productList={productList}/>
-                <div onClick={()=>goToProduct()}>
+                <div onClick={()=>goToProduct()} className="w-fit self-center">
                     <Btn text="View All Products"/>
                 </div>
                 <Service/>

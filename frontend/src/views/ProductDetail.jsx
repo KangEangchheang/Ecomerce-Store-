@@ -11,6 +11,7 @@ import gray_star from '../assets/icons/gray_star.svg';
 import axios from 'axios';
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const IMAGE_URL = import.meta.env.VITE_IMAGE_URL;
+const STATIC_URL = import.meta.env.VITE_STATIC_URL;
 
 function ProductDetail() {
     const param = useLocation().pathname.split('/');
@@ -29,23 +30,25 @@ function ProductDetail() {
     useEffect(()=>{
         const fetchData = async () =>{
            try {
-                let res = await axios.get(`${BASE_URL}/products/${param[2]}`);
+                let res = await axios.get(`${BASE_URL}/products/id/${param[2]}`);
                 var product = res.data;
-                product = product[0];
-                res = await axios.get(`${BASE_URL}/discount/${product.discount_id}`);
+                res = await axios.get(`${BASE_URL}/discount/id/${product.discount_id}`);
                 var discounts = res.data;
                 discounts = discounts[0];
                 if(discounts != null || discounts != undefined){
                     product= {...product,discount: { ...discounts }}
                 }
                 
-                setProduct(product);
                 res = await axios.get(`${BASE_URL}/category/${product.category_id}`);
                 const cat = res.data;
-                setCategory(cat[0]);
 
-                res = await axios.get(`${IMAGE_URL}/${product.id}`)
-                setImage(res.data);
+                res = await axios.get(`${IMAGE_URL+'/products/' + product.id}`);
+                var image = res.data;
+                image.map((e,i)=>(image[i] = `${STATIC_URL+image[i].image}` ))
+                console.log(image)
+                setCategory(cat[0]);
+                setProduct(product);
+                setImage([...image,...image,...image]);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }

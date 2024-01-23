@@ -5,10 +5,24 @@ import thlistdisable from '../../assets/icons/th-list-disable.svg';
 import thdisable from '../../assets/icons/th-disable.svg';
 import Card from "../small/Card";
 import CardList from "./CardList";
+import Pagination from './Pagination';
 
 function ListContent({List}) {
-    const [view,setView]=useState(false);
-
+    const [view,setView]=useState(true);
+    const ProductList = List;
+    //pagination
+    const [currentPage,setCurrentpage] = useState(1);
+    const [itemPerPage] = useState(12);
+     //pagination
+    //get current prods
+    const indexLast = currentPage * itemPerPage;
+    const indexFirst = indexLast - itemPerPage;
+    const currentProductList = ProductList.slice(indexFirst,indexLast);
+    const handlePaginate = (pageNumber)=>{
+        window.scrollTo(0,0);
+        setCurrentpage(pageNumber)
+    };
+    
     function handleView(x){
         if(x !== view){
             setView(x);
@@ -16,7 +30,7 @@ function ListContent({List}) {
     }
     useEffect(()=>{
         
-    },[])
+    },[currentPage])
 
     return (
         <div className="flex grow flex-col">
@@ -32,8 +46,8 @@ function ListContent({List}) {
                 //this is list view
                 <ul className="flex flex-col">
                     {
-                        List.length > 0 ? (
-                            List.map((e, i) => (
+                        currentProductList.length > 0 ? (
+                            currentProductList.map((e, i) => (
                                 <li key={i}>
                                     <CardList prod={e} />
                                 </li>
@@ -45,10 +59,10 @@ function ListContent({List}) {
                 </ul>
             ):(
                 //this is grid view
-                <ul className="flex flex-wrap w-full gap-10 justify-start">
+                <ul className="flex flex-wrap w-full gap-16 gap-y-4 justify-start">
                     {
-                        List.length > 0 ? (
-                            List.map((e, i) => (
+                        currentProductList.length > 0 ? (
+                            currentProductList.map((e, i) => (
                                 <li key={i}>
                                     <Card prod={e}/>
                                 </li>
@@ -60,6 +74,7 @@ function ListContent({List}) {
                 </ul>
             )
             }
+            <Pagination total={ProductList.length} itemPerPage={itemPerPage} paginate={handlePaginate} currentPage={currentPage}/>
         </div>
     )
 }

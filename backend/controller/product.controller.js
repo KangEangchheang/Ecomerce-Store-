@@ -26,7 +26,17 @@ const getProductByName = async(req, res) => {
         return res.status(500).send('Internal Server Error');
     }
 }
-
+const getProductByCategoryName = async(req,res)=>{
+    const name = req.params.name;
+    try{
+        const [cat] =await pool.query(`SELECT * FROM category WHERE name LIKE ? `,[`%${name}%`]);
+        const [result] = await pool.query(`SELECT * FROM product WHERE category_id = ?`, [cat[0].id]);
+        return res.status(200).send(result);
+    } catch(error){
+        console.error('Error fetching product by productName:', error);
+        return res.status(500).send('Internal Server Error');
+    }
+}
 const updateProduct = async (req,res) =>{
     const product = req.body
     const id = req.params.id;
@@ -98,5 +108,6 @@ module.exports = {
     deleteProduct,
     getProductByName,
     getFeature,
-    getNewProducts
+    getNewProducts,
+    getProductByCategoryName
 };

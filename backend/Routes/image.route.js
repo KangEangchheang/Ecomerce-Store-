@@ -24,8 +24,10 @@ const upload = multer({
     limits:{fileSize:5000000},//this is 2mb
     fileFilter:fileFilter
 });
-img.get('/suppliers/:id',controller.getSupplierImage);
-img.get('/products/:id',controller.getProductImage);
+img.get('/products',controller.getProductImage);
+img.get('/suppliers',controller.getSupplierImage);
+img.get('/suppliers/:id',controller.getSupplierImageById);
+img.get('/products/:id',controller.getProductImageById);
 img.post('/suppliers',upload.array('supplier'),controller.createSupplierImage);
 img.post('/products',upload.array('products'),controller.createProductImage);
 img.delete('/delete/:name',controller.deleteImage);

@@ -21,9 +21,9 @@ function CardList({prod}) {
         star.push(<img key={i} className='object-contain' src={gray_star}></img>)
     }
     return ( 
-        <div className="h-fit w-full py-6 pr-4 items-start flex gap-6 border-2 border-white hover:bg-secondary rounded-lg">
-            <div onClick={()=>handleClick()} className='cursor-pointer h-40 relative'>
-                <img className='h-full object-cover ' src={prod.img} alt="loading"/>
+        <div className="h-fit w-full py-6 pr-4  items-start flex gap-6 hover:bg-secondary rounded-lg">
+            <div onClick={()=>handleClick()} className='cursor-pointer h-40 relative w-[25%] rounded-md bg-white flex justify-center overflow-clip'>
+                <img className='h-full object-cover bg-white' src={prod.img} alt="loading"/>
                 {
                     prod.quantity < 1 ? (
                         <div className="w-[80px] h-[20px] flex items-center justify-center top-1 left-1 opacity-80 rounded-r-[12px] shadow-xl bg-restock absolute text-[12px] font-[Poppins] text-white font-[400]">out of stock</div>
@@ -34,7 +34,7 @@ function CardList({prod}) {
                     ) 
                 }
             </div>
-            <div className='gap-2 h-full flex flex-col flex-grow py-2'>
+            <div className='gap-2 h-full flex flex-col py-2'>
                 <p onClick={()=>handleClick()} className='cursor-pointer w-fit font-semibold text-lg hover:underline'>{prod.name}</p>
                 <div className='flex gap-1'>
                     <div className='h-3 w-fit flex gap-2'>
@@ -43,7 +43,7 @@ function CardList({prod}) {
                     <p className='text-xs font-light'>({prod.star_rating})</p>
                 </div>
                 <div className='w-fit'><Price price={prod.price} discount={prod.discount_id !=null?prod.discount.percent:null}/></div>
-                <p className='max-w-[65%] w-fit flex overflow-clip text-sm font-normal'>{prod.description.length>textLimit?prod.description.slice(0,textLimit)+'...':prod.description}</p>
+                <p className='max-w-[80ch] w-fit flex overflow-clip text-sm font-normal'>{prod.description.length>textLimit?prod.description.slice(0,textLimit)+'...':prod.description}</p>
             </div>
         </div>
      );
