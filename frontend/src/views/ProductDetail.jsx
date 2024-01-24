@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import Productimage from '../components/productdetail/productimage';
 import Price from '../components/small/price';
 import AddCard from '../components/small/addCard';
-import Card from '../components/small/Card';
 import Description from '../components/productdetail/description';
 import Review from '../components/productdetail/Review';
 import gold_star from '../assets/icons/gold_star.svg';
@@ -19,7 +18,6 @@ function ProductDetail() {
     const [isReview,setIsReview] = useState(false);
     const [category,setCategory] = useState({name:''});
     const [image,setImage] = useState([]);
-    const [related,setRelated] = useState([]);
     const [product,setProduct] = useState({
         image:[]
     })
@@ -29,7 +27,7 @@ function ProductDetail() {
     function toggleOff(){
         setIsReview(false);
     }
-
+    console.log('first')
     useEffect(()=>{
         const fetchData = async () =>{
            try {
@@ -51,7 +49,7 @@ function ProductDetail() {
 
                 setCategory(cat[0]);
                 setProduct(product);
-                setImage([...image,...image,...image]);
+                setImage(image);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -68,7 +66,7 @@ function ProductDetail() {
     }
 
     return ( 
-        <div className="px-16 flex-wrap">
+        <div className="px-16 flex-wrap pb-16">
             {/* product mini navigation above the product image */}
             <div className='flex gap-1 items-baseline text-sm my-8'>
                 <Link to="/products">Products</Link>
@@ -109,10 +107,12 @@ function ProductDetail() {
 
             {/* description and review */}
             <div className='flex flex-col w-full items-center'>
-                <div className='grid grid-cols-2 border-2 border-solid border-secondary1 rounded-sm'>
+                
+                {/* <div className='grid grid-cols-2 border-2 border-solid border-secondary1 rounded-sm'>
                     <button className='py-2 px-8 text-sm active:bg-slate-300' onClick={toggleOff} style={{backgroundColor:isReview?'transparent':'#F5F5F5'}} >Description</button>
                     <button className='py-2 px-8 text-sm border-solid border-l-2 border-secondary1 active:bg-slate-300' onClick={toggleOn} style={{backgroundColor:isReview?'#F5F5F5':'transparent'}} >Reviews</button>
-                </div>
+                </div> */}
+
                 {/* logic for component swapping */}
                 {!isReview && <Description desc={product.description}/>}
                 {isReview && <Review review={{

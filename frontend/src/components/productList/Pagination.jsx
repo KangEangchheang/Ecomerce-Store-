@@ -7,7 +7,7 @@ function Pagination({total,itemPerPage,paginate,currentPage}) {
         <div className="w-full flex justify-center mt-16 items-center">
             <ul className="flex w-fit gap-1 flex-wrap">
             {pageNumber.map((e,i)=>(
-                <li className={`text-center w-8 py-1 cursor-pointer border-2  ${currentPage===e?'border-secondary1 text-white bg-secondary1':'border-text1 hover:bg-text1'}`} key={i}>
+                <li className={`text-center w-8 py-1 cursor-pointer border-2  ${currentPage===e?'border-secondary1 text-white bg-secondary1':'border-text1 hover:bg-gray-200'}`} key={i}>
                     <button onClick={()=>paginate(e)}>{e}</button>
                 </li>
             ))}

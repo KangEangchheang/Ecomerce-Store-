@@ -14,15 +14,15 @@ function SupportNav() {
                 nav('/about')
                 break;
             case 'Subscribe':
-                nav('/about');
+                nav('/about/#subscribe');
         }
     }
     return ( 
-        <div className="absolute flex-col top-full w-full bg-neutral-200 text-xs flex overflow-scroll border-b-2 border-neutral-200 scroll no-scrollbar flex-wrap">
+        <div className="absolute flex-col z-[100] top-full w-full bg-neutral-200 text-xs flex overflow-scroll border-b-2 border-neutral-200 scroll no-scrollbar flex-wrap">
         {
             categories.map((e,i)=>(
-                <div className="relative tracking-wide px-4 py-5 cursor-pointer hover:bg-secondary1 hover:text-primary min-w-max bg-neutral-200 text-secondary1 font-semibold" key={i}>
-                    <p onClick={()=>handleRoute(e)}>{e}</p>
+                <div onClick={()=>handleRoute(e)} className="relative tracking-wide px-4 py-5 cursor-pointer hover:bg-secondary1 hover:text-primary min-w-max bg-neutral-200 text-secondary1 font-semibold" key={i}>
+                    <p>{e}</p>
                 </div> 
             ))
         }

@@ -10,36 +10,36 @@ const user = [
     [
         "customer",
         "Chharng Chhit",
-        "12345678",
+        "12345678", 
         "085720085",
         "email@gmail.com",
         "/1.png",
         1
     ],
     [
-        "customer",
-        "Chharng Chhit",
+        "admin",
+        "Kang Eangchheang",
         "12345678",
-        "085720086",
+        "015822086",
         "email1@gmail.com",
         "/1.png",
         1
     ],
     [
         "customer",
-        "Chharng Chhit",
+        "Ek Moniroth",
         "12345678",
-        "0857200851",
-        "emai2l@gmail.com",
+        "0232330851",
+        "rothsupergirl@gmail.com",
         "/1.png",
         1
     ],
     [
         "customer",
-        "Chharng Chhit",
-        "12345678",
-        "0857200835",
-        "em3ail@gmail.com",
+        "Doung Dariya",
+        "012345678",
+        "0977211835",
+        "dariiyaa@gmail.com",
         "/1.png",
         1
     ],

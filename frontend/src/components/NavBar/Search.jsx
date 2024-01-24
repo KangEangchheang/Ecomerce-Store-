@@ -85,7 +85,7 @@ function Search() {
 
     return ( 
         <div className='flex relative'>
-            <div className='border-neutral-200 border-2 rounded-l-full border-r-0'>
+            <div className='border-gray-300 border-2 rounded-l-full border-r-0'>
                 <img className='h-4 left-4 top-1/2 -translate-y-2/4 absolute' src={search} alt='search'/>
             <input type='text' value={input} onFocus={handleFocus} onBlur={handleNotFocus} onChange={handleAutoSearch} className="text-xs  text-primary1 py-2 px-10 rounded-full flex w-[60ch] outline-none border-none" placeholder="what are you looking for?"/>
             </div>

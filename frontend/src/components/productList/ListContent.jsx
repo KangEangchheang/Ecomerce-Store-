@@ -75,7 +75,7 @@ function ListContent({List}) {
             )
             }
             {/* this mean that it only show the page option if there is more than 2 page */}
-            {ProductList > itemPerPage && <Pagination total={ProductList.length} itemPerPage={itemPerPage} paginate={handlePaginate} currentPage={currentPage}/>}
+            <Pagination total={ProductList.length} itemPerPage={itemPerPage} paginate={handlePaginate} currentPage={currentPage}/>
         </div>
     )
 }

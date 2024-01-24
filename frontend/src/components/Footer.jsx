@@ -3,7 +3,7 @@ import telegram from '../assets/icons/telegram.png';
 
 function Footer() {
     return ( 
-        <div id="footer" className="bg-text2 w-full py-8 text-text text-sm flex justify-center gap-20 font-light flex-wrap mt-10">
+        <div id="footer" className="bg-text2 w-full py-8 text-text text-sm flex justify-center gap-20 font-light flex-wrap">
             <div className="flex flex-col gap-3">
                 <h1 className="text-xl font-semibold font-serif">iFour</h1>
                 <div className="font-semibold">Subscribe</div>
@@ -17,18 +17,10 @@ function Footer() {
                 <p>+85518273641</p>
             </div>
             <div className="flex flex-col gap-3">
-                <div className="text-[16px] font-semibold">Account</div>
-                <p>My Account</p>
-                <p>Sign Up</p>
-                <p>Login</p>
-                <p>History</p>
-            </div>
-            <div className="flex flex-col gap-3">
                 <div className="text-[16px] font-semibold">Quick link</div>
-                <p>Privacy Policy</p>
-                <p>Terms Of Use </p>
-                <p>FAQ</p>
-                <p>Contact</p>
+                <a href="/about">Privacy Policy</a>
+                <a href="/about">Terms Of Use </a>
+                <a href="/contact">Contact</a>
             </div>
             <div className="flex flex-col gap-3">
                 <div className="text-[16px] font-semibold">Follow us</div>

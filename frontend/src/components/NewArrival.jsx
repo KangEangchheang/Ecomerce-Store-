@@ -23,7 +23,7 @@ function NewArrival({productList}) {
             <ul
                 ref={sliderRef}
                 id='slider'
-                className="mt-8 pb-8 flex justify-between overflow-x-scroll scroll whitespace-nowrap scroll-smooth gap-10 no-scrollbar"
+                className="mt-8 pb-8 flex justify-between overflow-x-scroll scroll scroll-smooth gap-10 no-scrollbar"
             >
                 {productList.length > 0 ? (
                 productList.map((e, i) => (

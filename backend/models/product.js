@@ -1,6 +1,6 @@
 const model = `CREATE TABLE IF NOT EXISTS product (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
+    name TEXT NOT NULL,
     description TEXT,
     star_rating FLOAT DEFAULT 0.0,
     quantity INT NOT NULL,

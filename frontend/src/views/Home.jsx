@@ -56,7 +56,7 @@ export default function Home(){
                     }
                 }
                 
-                setProductList([...product,...product]);
+                setProductList([...product,]);
                 
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -74,7 +74,7 @@ export default function Home(){
             <div className="h-[70vh]">
                 <PromotionBanner banners={banners}/>
             </div>
-            <div className="flex flex-col gap-10 mt-16 px-16">
+            <div className="flex flex-col gap-10 mt-16 px-16 pb-16">
                 {/* <Category/> */}
                 <FeatureProduct productList={productList}/>
                 <NewArrival productList={productList}/>

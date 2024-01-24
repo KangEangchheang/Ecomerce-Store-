@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-
 function PromotionBanner({banners}) {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const slideInterval = 4000;
+    const slideInterval = 6000;
     useEffect(()=>{
         
         const timer = setInterval(() => {
@@ -17,9 +16,9 @@ function PromotionBanner({banners}) {
 
     },[currentIndex,banners]);
     return ( 
-        <div className="bg-[#0A0A0A] w-screen h-[70vh] flex justify-center absolute left-0">
+        <div className="bg-[#0A0A0A] w-screen h-[70vh] flex justify-center absolute left-0 overflow-hidden">
            {banners[0] != undefined && 
-           <img className="h-full object-fill" 
+           <img className={`h-full object-fill bannerAnimation`} 
            src={`http://localhost:5000/banners/${banners[currentIndex].image}`} alt=''/>}
         </div>
     );

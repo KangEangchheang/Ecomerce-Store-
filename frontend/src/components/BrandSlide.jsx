@@ -20,7 +20,7 @@ function BrandSlide() {
     return ( 
         <div className="flex gap-24 justify-center items-center overflow-clip w-full my-8" style={{scrollbarWidth:'none'}}>
             {list.map((e,index)=>(
-                <img key={index} src={`${STATIC_URL+e.image}`} className="h-20" />
+                <img key={index} src={`${STATIC_URL+e.image}`} className="h-20 object-contain max-w-[10rem]" />
             ))}
         </div>
      );

@@ -3,6 +3,7 @@ const banner = `CREATE TABLE IF NOT EXISTS banner_image (
     image TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP NULL
+    
 ) ENGINE = InnoDB`;
 
 module.exports = banner;

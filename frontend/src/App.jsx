@@ -8,6 +8,10 @@ import NotFound from './views/NotFound';
 import ProductDetail from './views/ProductDetail';
 import User from './views/User';
 import StoreLocation from './components/StoreLocation';
+import Contact from './views/Contact';
+import About from './views/About';
+import Login from './views/Login';
+import Register from './views/Register';
 
 function App() {
   return (
@@ -18,7 +22,10 @@ function App() {
             <Navbar></Navbar>
             <Routes>
               <Route path='/' exact Component={Home}/>
-              <Route path='/contact' Component={''}/>
+              <Route path='/contact' Component={Contact}/>
+              <Route path='/about' Component={About}/>
+              <Route path='/auth/login' exact Component={Login}/>
+              <Route path='/auth/signup' exact Component={Register}/>
               <Route path='/products' Component={ProductList}/>
               <Route path='/product/:productid' Component={ProductDetail}/>
               <Route path='/products/:categoryid' Component={ProductList}/> 

@@ -77,7 +77,7 @@ function User() {
         setNav(m);
     }
     return ( 
-        <div className="flex flex-col gap-2 py-4 px-16">
+        <div className="flex flex-col gap-2 py-4 px-16 pb-16">
             <UserNavigationTab param={ActiveNav}/>
             {/* container of menu and it's content */}
             <div className="flex gap-4 justify-between">

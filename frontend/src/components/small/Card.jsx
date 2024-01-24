@@ -18,17 +18,17 @@ function Card({prod}) {
         <div className= "h-[200px] bg-white relative box-border group" id='cardContainer'>
           {
               prod.quantity < 1 ? (
-                <div className="w-[80px] h-[20px] flex items-center justify-center z-10 top-1 left-1 opacity-80 rounded-r-[12px] shadow-xl bg-restock absolute text-[12px] font-[Poppins] text-white font-[400]">out of stock</div>
+                <div className="w-[80px] h-[20px] flex items-center justify-center z-[1] top-1 left-1 opacity-80 rounded-r-[12px] shadow-xl bg-restock absolute text-[12px] font-[Poppins] text-white font-[400]">out of stock</div>
               ): 
               (
               prod.discount_id != null &&
-              <div className="w-[80px] h-[20px] flex items-center justify-center z-10 top-1 left-1 opacity-80 rounded-r-[12px] shadow-xl bg-discount absolute text-[12px] font-[Poppins] text-white font-[400]">{prod.discount.percent}%</div>
+              <div className="w-[80px] h-[20px] flex items-center justify-center z-[1] top-1 left-1 opacity-80 rounded-r-[12px] shadow-xl bg-discount absolute text-[12px] font-[Poppins] text-white font-[400]">{prod.discount.percent}%</div>
               ) 
             }
           
           <div className="w-full h-full flex items-center justify-center relative overflow-clip">
             <img
-              className="object-cover cursor-pointer bg-white"
+              className="object-contain h-full cursor-pointer bg-white"
               src={prod.img}
               alt=""
               onClick={()=>handleClick()}
@@ -50,8 +50,8 @@ function Card({prod}) {
             </div>
           </div>
         </div>
-        <div className="mt-2 cursor-pointer flex flex-col grow justify-between" onClick={handleClick}>
-          <div className="txt text-center font-[500] text-[14px] leading-[15px] hover:underline">{prod.name}</div>
+        <div className="mt-2 cursor-pointer flex flex-col grow justify-center overflow-clip" onClick={handleClick}>
+          <p className="txt text-center font-medium break-normal w-full text-sm leading-[16px] hover:underline">{prod.name}</p>
           <Price price={prod.price} discount={prod.discount_id !=null?prod.discount.percent:null}/>
         </div>
       </div>

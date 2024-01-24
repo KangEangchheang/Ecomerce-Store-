@@ -32,7 +32,8 @@ export default function Navbar(){
     }
 
     return(
-        <nav className='flex flex-col relative'>
+        // i use mt-8 because of storelocation is positioned absolute
+        <nav className='flex flex-col relative mt-8'> 
             {/* search and account cart */}
             <div className="flex justify-between items-center px-16 py-4">
                 <h1 className="text-xl font-semibold font-serif">iFour</h1>
@@ -43,7 +44,7 @@ export default function Navbar(){
                 </div>
             </div>
             {/* homepage menu */}
-            <div className='px-16 text-sm flex justify-between text-primary1 font-medium border-y-2 border-neutral-200'>
+            <div className='px-16 text-sm flex justify-between text-primary1 font-medium border-2 border-neutral-200'>
                 <div className='flex cursor-pointer text-center'>
                     <Link className='py-4 px-8 flex items-center hover:bg-neutral-200' to="/">Home</Link>
                     <Link className='py-4 px-8 flex items-center hover:bg-neutral-200' to="/feature">Feature Products</Link>
