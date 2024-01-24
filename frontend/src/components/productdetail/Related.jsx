@@ -40,7 +40,7 @@ function Related({catName,currentProductId}) {
                 //this filter out the product alr in the detail page incase it query the alrd existing product
                 // product = product.filter(item=>item.id !=currentProductId);
 
-                setList([...product,...product,...product,...product,...product]);
+                setList(product);
             }catch(e){
                 console.log(e);
             }
@@ -50,7 +50,7 @@ function Related({catName,currentProductId}) {
     return ( 
         <div className='my-12'>  
             <h1 className='font-semibold text-lg mb-4'>Related products</h1>
-            <ul className='flex justify-between'>
+            <ul className='flex justify-start gap-12'>
                 {list.map((e,i)=>(
                     <li className='scale-90' key={i}>
                         <Card prod={e}/>
