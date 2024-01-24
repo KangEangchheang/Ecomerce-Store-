@@ -22,7 +22,7 @@ function CardList({prod}) {
     }
     return ( 
         <div className="h-fit w-full py-6 pr-4  items-start flex gap-6 hover:bg-secondary rounded-lg">
-            <div onClick={()=>handleClick()} className='cursor-pointer h-40 relative w-[25%] rounded-md bg-white flex justify-center overflow-clip'>
+            <div onClick={()=>handleClick()} className='cursor-pointer h-40 relative w-[25%] min-w-[8rem] rounded-md bg-white flex justify-center overflow-clip'>
                 <img className='h-full object-cover bg-white' src={prod.img} alt="loading"/>
                 {
                     prod.quantity < 1 ? (

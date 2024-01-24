@@ -110,7 +110,7 @@ function ProductList() {
             }
         };
         fetchData();
-    },[location.pathname,sort]);
+    },[location.pathname, sort]);
     
     return ( 
         <>
@@ -121,7 +121,8 @@ function ProductList() {
                     <NavigationTab param={param}/>
                     <SideMenu updateSort={handleSort}/>
                 </div>
-                <ListContent List={productList}/>
+                {productList.length>0?<ListContent List={productList}/>:
+                <div className='mt-16 w-full text-center'>This category has no product</div>}
             </div>
             
         </>

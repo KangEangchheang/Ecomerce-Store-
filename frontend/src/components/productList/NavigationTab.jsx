@@ -15,7 +15,7 @@ function NavigationTab({param}) {
             :<div></div>}
             {param.length === 3 && param[2]!==""?(
                 <div>
-                    <span className='text-secondary1 font-semibold'>{param[2]}</span>
+                    <p className='text-secondary1 font-semibold'>{param[2].replace(/_/g, '')}</p>
                 </div>
             ):(<div></div>)}
         </div>

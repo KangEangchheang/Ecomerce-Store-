@@ -10,7 +10,8 @@ const imageRoute = require('./Routes/image.route.js');
 const categoryRoute = require('./Routes/category.route.js');
 const supplierRoute = require('./Routes/supplier.route.js');
 const discountRoute = require('./Routes/discount.route.js');
-const userRoute = require('./Routes/user.route.js')
+const userRoute = require('./Routes/user.route.js');
+const bannerRoute = require('./Routes/banner.route.js')
 
 const PORT = process.env.PORT || 9000;
 
@@ -26,6 +27,7 @@ app.use('/api/category',categoryRoute);
 app.use('/api/supplier',supplierRoute);
 app.use('/api/discount',discountRoute);
 app.use('/api/user', userRoute);
+app.use('/api/banner', bannerRoute);
 
 // render basic html for our api route
 app.get('/', async(req,res)=>{

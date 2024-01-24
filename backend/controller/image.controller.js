@@ -98,7 +98,8 @@ const getSupplierImage = async (req,res) =>{
     }
 }
 module.exports = {
-   createProductImage,createSupplierImage,deleteImage,getSupplierImage,
+   createProductImage,createSupplierImage,
+   deleteImage,getSupplierImage,
    getProductImage,getProductImageById,
    getSupplierImageById
 };

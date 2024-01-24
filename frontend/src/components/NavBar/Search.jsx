@@ -92,7 +92,7 @@ function Search() {
             <button onClick={()=>handleSearch()} className='border-2 border-secondary1 text-xs font-medium bg-secondary1 text-primary px-6 py-2 rounded-r-full active:scale-105'>Search</button>
             {/* i could've use useRef for better component rerender life cycle */}
             { isVisible &&
-                <ul onMouseEnter={handleFocus} className='absolute flex w-fit overflow-y-auto max-h-96 flex-col top-[110%] rounded-lg p-2 z-10 border-2 border-neutral-200 bg-white shadow-md'>
+                <ul onMouseEnter={handleFocus} className='absolute flex w-fit overflow-y-auto max-h-96 flex-col top-[110%] rounded-lg p-2 z-50 border-2 border-neutral-200 bg-white shadow-md'>
                     {
                     product.length !=0?
                     product.map((e,i)=>(

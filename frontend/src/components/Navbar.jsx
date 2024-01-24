@@ -44,9 +44,9 @@ export default function Navbar(){
             </div>
             {/* homepage menu */}
             <div className='px-16 text-sm flex justify-between text-primary1 font-medium border-y-2 border-neutral-200'>
-                <div className='flex cursor-pointer'>
-                    <Link className='py-4 px-8 hover:bg-neutral-200' to="/">Home</Link>
-                    <Link className='py-4 px-8 hover:bg-neutral-200' to="/feature">Feature Products</Link>
+                <div className='flex cursor-pointer text-center'>
+                    <Link className='py-4 px-8 flex items-center hover:bg-neutral-200' to="/">Home</Link>
+                    <Link className='py-4 px-8 flex items-center hover:bg-neutral-200' to="/feature">Feature Products</Link>
                     
                     <div onClick={()=>handleMenu(0)} className={`flex items-center gap-2 hover:bg-neutral-200 
                     ${isMenuOpen[0]?'bg-neutral-200 border-x-2': ''}`}>
@@ -71,7 +71,7 @@ export default function Navbar(){
                     <p>+855 15-987-990</p>
                 </div>
             </div>
-            <div className='absolute z-10 -bottom-1/2 w-full'>
+            <div className='relative z-10 w-full shadow-md'>
                     {
                         isMenuOpen.map((e,i)=>(
                             e? MenuComponent[i]:null
