@@ -7,4 +7,5 @@ const dbConfig = {
     database: process.env.DB_DATABASE || 'ecomerce',
 }
 
+
 module.exports = dbConfig;

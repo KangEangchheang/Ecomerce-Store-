@@ -29,6 +29,24 @@ app.use('/api/discount',discountRoute);
 app.use('/api/user', userRoute);
 app.use('/api/banner', bannerRoute);
 
+
+const bodyParser = require('body-parser');
+const authMiddleware = require('./config/middleware/authMiddleware.js');
+const authController = require('./controller/auth/authController.js');
+const usersController = require('./controller/testController.js');
+app.use(bodyParser.json());
+
+// Authentication routes
+app.post('/login', authController.login);
+
+// Apply the authMiddleware to all routes below this line
+app.use(authMiddleware);
+
+// Protected routes
+app.get('/profile', usersController.getUserProfile);
+
+
+
 // render basic html for our api route
 app.get('/', async(req,res)=>{
     return res.status(200).sendFile(path.join(__dirname+'/views/index.html'));
