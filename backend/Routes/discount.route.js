@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 
 const controller = require('../controller/discount.controller.js');
 const verifyToken = require('../config/middleware/authMiddleware.js');
-dis.use(bodyParser.json());
-dis.use(verifyToken);
+// dis.use(bodyParser.json());
+// dis.use(verifyToken);
 
 dis.get('/',controller.getDiscount);
 dis.get('/id/:id',controller.getDiscountById);

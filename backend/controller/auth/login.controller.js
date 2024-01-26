@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 //===== cutomer Library
 const dbConfig = require('../../config/config.js');
 const mysql = require('mysql2');
+const config = require('../../config/env.js')
 
 const pool = mysql.createPool({...dbConfig, connectionLimit: 10}).promise();
 
@@ -30,7 +31,7 @@ const getLogin = async(req, res) => {
         }
 
         // Password is correct, generate and return a JWT token
-        const token = jwt.sign({ userId: user.id, email: user.email }, 'yourSecretKey', { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user.id, email: user.email }, config.secretKey, { expiresIn: '1h' });
 
         res.json({ userId: user.id, token });
     } catch (error) {
