@@ -1,5 +1,8 @@
-const dbConfig = require ('../../config/config.js');
+const bcrypt = require('bcrypt');
 const mysql = require('mysql2');
+const jwt = require('jsonwebtoken');
+
+const dbConfig = require ('../../config/config.js');
 const products = require('./data/products.js')
 const suppliers = require('./data/supplier.js');
 const {productImages,supplierImages} = require('./data/image.js');
@@ -54,6 +57,8 @@ const seed = async () =>{
         console.log(`${productImages.length+supplierImages.length} entries add to image`);
 
         for(let i = 0; i<users.length;i++){
+            const hashedPassword = await bcrypt.hash(users[i][2], 10);
+            users[i][2] = hashedPassword;
             await pool.query(`INSERT INTO user (user_type,username,password,phone_number,email,profile_image,isActive) VALUES (?,?,?,?,?,?,?)`,
             [...users[i]]);
         }

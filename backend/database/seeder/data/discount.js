@@ -15,7 +15,7 @@ const discounts = [
         10,
         null,
         '2023-01-01 00:00:01',
-        '2023-02-30 23:59:59'
+        '2023-02-28 23:59:59'
     ],
 ]
 module.exports = discounts;
