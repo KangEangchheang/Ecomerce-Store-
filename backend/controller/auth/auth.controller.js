@@ -12,22 +12,20 @@ const login = async (req,res)=>{
         return res.status(400).json({'message':'email and password are required'})
     }
     const [result] = await pool.query(`SELECT * FROM user WHERE email = ?`,[email]);
-    const queryemail = result[0]?.email;
-    const querypassword = result[0]?.password;
-
-    const foundUser = queryemail===email || false;
+    const user = result[0];
+    const foundUser = user?.email===email || false;
     if (!foundUser){
         return res.status(401).json({'message':'unauthorized'});
     }
 
     //check password
-    const match = await bcrypt.compare(password,querypassword);
+    const match = await bcrypt.compare(password,user.password);
     if(match){
-        const user_type = result[0]?.user_type;
+        const user_type = user?.user_type;
         //create JWT
         const accessToken = jwt.sign({
             UserInfo: {
-                email:queryemail,
+                email:user.email,
                 user_type:user_type
             }
         },
@@ -37,7 +35,7 @@ const login = async (req,res)=>{
         });
 
         const refreshToken = jwt.sign({
-            email:queryemail
+            email:user.email
         },
         process.env.JWT_REFRESH_TOKEN,
         {
@@ -45,12 +43,17 @@ const login = async (req,res)=>{
         });
 
         //save refresh token to current login user
-        const user = [1,refreshToken,queryemail];
-        await pool.query('UPDATE user SET isActive = ?,refresh_token = ? WHERE email = ?',user);
+        const updateUser = [1,refreshToken,user.email];
+        await pool.query('UPDATE user SET isActive = ?,refresh_token = ? WHERE email = ?',updateUser);
 
         //sent cookie httponly hide cookie from people
         res.cookie('jwt',refreshToken,{httpOnly:true, sameSite:'none', secure:true ,maxAge:7*24*60*60*1000});//1 week cookie
-        res.json({accessToken:accessToken});
+        res.json({
+            accessToken:accessToken,
+            user:{
+                id:user.id,
+            }
+        });
     }else{
         res.status(401).json({'message':'unauthorized'});
     }

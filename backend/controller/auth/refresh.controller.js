@@ -18,23 +18,26 @@ const refresh = async (req,res)=>{
     
     jwt.verify(refreshToken,process.env.JWT_REFRESH_TOKEN,(err,decode)=>{
         if(err||user.email !== decode.email) return res.status(403).json({error:'forbidden'});
-        const user_type = user.user_type;
+        
         const accessToken = jwt.sign(
             {
                 UserInfo: {
                     email:decode.email,
-                    user_type: user_type
+                    user_type: user.user_type
                 }
             },
             process.env.JWT_ACCESS_TOKEN,
             {
                 expiresIn: '15m'
             });
-        res.json({accessToken});//1 day cookie
+        res.json({
+            accessToken,
+            user:{
+                id: user.id
+            }
+        });//1 day cookie
     });
 
-
-    
 }
 
 module.exports = {refresh}

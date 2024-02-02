@@ -6,7 +6,8 @@ const user = `CREATE TABLE IF NOT EXISTS user(
     email varchar(100) UNIQUE,
     refresh_token TEXT,
     phone_number varchar(15) UNIQUE,
-    profile_image varchar(100),
+    profile_image TEXT,
+    
     isActive boolean,
     disabled_at TIMESTAMP,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
