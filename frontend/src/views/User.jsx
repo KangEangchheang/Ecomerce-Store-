@@ -12,11 +12,12 @@ function User() {
     const [ActiveNav,setNav]= useState('Dashboard');
     useEffect(()=>{
         const param = location.pathname.split('/');
-        if(param[3] === 'cart'){
+        if(param[2] === 'cart'){
             setNav('Cart');
-            nav('/user/1')
+            nav('/user/')
         }
-    },[location.pathname])
+        
+    },[location.pathname,ActiveNav])
     const user = {
         role:'customer',
         username:'Tom Cruise',

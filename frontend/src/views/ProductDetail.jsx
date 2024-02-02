@@ -27,7 +27,6 @@ function ProductDetail() {
     function toggleOff(){
         setIsReview(false);
     }
-    console.log('first')
     useEffect(()=>{
         const fetchData = async () =>{
            try {

@@ -16,7 +16,7 @@ import Register from './views/Register';
 function App() {
   return (
     <>
-      <div className='m-auto flex flex-col max-w-screen-2xl grow'>
+      <main className='m-auto flex flex-col max-w-screen-2xl grow'>
         <Router>
             <StoreLocation/>
             <Navbar></Navbar>
@@ -30,13 +30,13 @@ function App() {
               <Route path='/product/:productid' Component={ProductDetail}/>
               <Route path='/products/:categoryid' Component={ProductList}/> 
               <Route path='/feature' Component={ProductList}/>
-              <Route path='/user/:userid' Component={User}/>
-              <Route path='/user/:userid/cart' Component={User}/>
+              <Route path='/user/' Component={User}/>
+              <Route path='/user/cart' Component={User}/>
 
               <Route path='*' Component={NotFound}/>
             </Routes>
         </Router>
-      </div>
+      </main>
       <Footer></Footer>
     </>
   )

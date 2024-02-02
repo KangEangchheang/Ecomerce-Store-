@@ -17,12 +17,6 @@ export default function Navbar(){
     useEffect(()=>{
         setMenuOpen([false,false]);
     },[location.pathname]);
-    function routeUser(){
-        nav('/user/1');
-    }
-    function routeCart(){
-        nav('/user/1/cart');
-    }
 
     function handleMenu(m){
         const array = [false,false]
@@ -39,8 +33,8 @@ export default function Navbar(){
                 <h1 className="text-xl font-semibold font-serif">iFour</h1>
                 <Search/>
                 <div className='flex gap-6'>
-                    <img className='cursor-pointer w-8' onClick={()=>routeCart()} src={cart}/>
-                    <img className='cursor-pointer w-8' onClick={()=>routeUser()} src={user}/>
+                    <a href="/user/cart"><img className='cursor-pointer w-8' src={cart}/></a>
+                    <a href="/user/"><img className='cursor-pointer w-8' src={user}/></a>
                 </div>
             </div>
             {/* homepage menu */}

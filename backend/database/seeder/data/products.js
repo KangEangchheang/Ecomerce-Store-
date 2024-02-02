@@ -71,7 +71,7 @@ const products = [
         5
     ],
     [
-        `Cindasun Anime Art Desk Mat Large Gaming Mouse Pad Pink Japanese Cherry Blossom Theme Aesthetic Mousepad Computer Laptop Desk Pad with Durable Stitched Edge Non-Slip Rubber Base 31.5''X15.7'' `,
+        `Cindasun Anime Art Desk Mat Large Gaming Mouse Base 31.5''X15.7'' `,
         `Elevate your workspace with the stunning personalized design of the Cindasun mouse pad. Featuring a cool and unique image, it adds a touch of sleek professionalism to any computer setup, making it the perfect gift for gamers, professionals, and anyone who wants to spruce up their workspace. `,
         20,
         29.99,
@@ -107,7 +107,7 @@ const products = [
         5
     ],
     [
-        'MSI Ultra-Smooth Low-Friction Textile Surface Natural Rubber Base Extra Soft Comfortable Touch Anti-Slip Gaming Mouse Pad (Agility GD30)',
+        'MSI Gaming Mouse Pad (Agility GD30)',
         `Silk Gaming Fabric surface
     Incredible smooth user experience
     Extra soft and comfortable touch
@@ -142,7 +142,7 @@ const products = [
 
     ],
     [
-        'Ubluker 10k 8k 4k HDMI 2.1 Cable 6.6 FT',
+        'Ubluker HDMI 2.1 Cable 6.6 FT',
         `Compatible Devices: Dell, Samsung, Sony, LG, G-SYNC, Soundbar, Xiaomi, Huawei, MacBook Pro 2021, Mac mini, Mac Pro AMD, EVGA, GIGABYTE, Intel, MSI, NVIDIA, Thinkpad, HP, Acer, Lenovo, ASUS, Apple, MSI, Samsung Electronics, Razer, jumper, Microsoft, Alienware, TECLAST, LG, Computer Upgrade King, Toshiba, HYUNDAI, GIGABYTE, ME2 MichaelElectronics5, EXCaliberPC, Thomson, Bmax, ALLDOCUBE, Panasonic, Mytrix, PROSTAR, iProda, Latitude, TCL, Philips, Hisense, TD Systems, SharpDell, Samsung, Sony, LG, G-SYNC, Soundbar, Xiaomi, Huawei, MacBook Pro 2021, Mac mini, Mac Pro AMD, EVGA, GIGABYTE, Intel, MSI, NVIDIA, Thinkpad, HP, Acer, Lenovo, ASUS, Apple, MSI, Samsung Electronics, Razer, jumper, Microsoft, Alien… `,
         25,
         10,

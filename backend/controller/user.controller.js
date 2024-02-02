@@ -85,13 +85,11 @@ const updateUser = async (req, res) => {
             UPDATE user
             SET
                 username = ?,
-                user_type = ?,
                 phone_number = ?,
                 email = ?,
                 profile_image = ?,
-                isActive = ?
             WHERE id = ?;
-        `, [username, user_type, phone_number, email, profile_image, isActive, userId]);
+        `, [username, phone_number, email, profile_image, userId]);
 
         return res.status(200).json({ message: 'User updated successfully' });
     } catch (error) {

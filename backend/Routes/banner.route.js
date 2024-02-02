@@ -1,6 +1,8 @@
 const express = require('express');
 const multer = require('multer');
 const controller = require('../controller/banner.controller.js');
+const auth = require('../config/middleware/authMiddleware');
+const user_typeVerify = require('../config/middleware//verifyUsertype.js');
 
 const ban = express.Router();
 
@@ -27,6 +29,10 @@ const upload = multer({
 
 ban.get('/',controller.getBanners);
 ban.get('/:id',controller.getBannersById);
+
+ban.use(auth);
+ban.use(user_typeVerify('admin'))
+
 ban.post('/',upload.array('banner'),controller.createBanner);
 ban.delete('/:id',controller.deleteBanner);
 
