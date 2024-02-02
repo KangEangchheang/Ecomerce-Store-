@@ -17,27 +17,28 @@ function App() {
   // all of this routes should in main.jsx but its too late now and im lazy
   return (
     <Routes>
-      <Route path='/' exact Component={Layout}>
-        {/* public route */}
-        <Route path='/' exact Component={Home}/>
-        <Route path='/contact' Component={Contact}/>
-        <Route path='/about' Component={About}/>
-        <Route path='/auth/login' exact Component={Login}/>
-        <Route path='/auth/signup' exact Component={Register}/>
-        <Route path='/products' Component={ProductList}/>
-        <Route path='/product/:productid' Component={ProductDetail}/>
-        <Route path='/products/:categoryid' Component={ProductList}/> 
-        <Route path='/feature' Component={ProductList}/>
+      <Route Component={PersistAuth}>
+        <Route path='/' exact Component={Layout}>
+            {/* public route */}
+            <Route path='/' exact Component={Home}/>
+            <Route path='/contact' Component={Contact}/>
+            <Route path='/about' Component={About}/>
+            <Route path='/auth/login' Component={Login}/>
+            <Route path='/auth/signup' Component={Register}/>
+            <Route path='/products' Component={ProductList}/>
+            <Route path='/product/:productid' Component={ProductDetail}/>
+            <Route path='/products/:categoryid' Component={ProductList}/> 
+            <Route path='/feature' Component={ProductList}/>
 
-        {/* private for user route
-              using nested routes so it will go through the first 
-              route first then it will load the next one therefor 
-              we able to create a protected route */}
-        <Route Component={PersistAuth}>
-          <Route Component={Authorization}>
-            <Route path='/user/' Component={User}/>
-            <Route path='/user/cart' Component={User}/>
-          </Route>
+            {/* private for user route
+                using nested routes so it will go through the first 
+                route first then it will load the next one therefor 
+                we able to create a protected route */}
+          
+            <Route Component={Authorization}>
+              <Route path='/user/' Component={User}/>
+              <Route path='/user/cart' Component={User}/>
+            </Route>
         </Route>
 
         {/* catch all routes that isnt define */}

@@ -17,6 +17,8 @@ function UserMenu({updateMenu,active,uid}) {
         if(!res){
             return setError('error logging out');
         }
+        localStorage.clear();
+        sessionStorage.clear();
         setAuth({});
         nav('/user');
     }

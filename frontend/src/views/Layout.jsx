@@ -10,8 +10,8 @@ export const Layout = () => {
       <Navbar></Navbar>
       <main className='m-auto flex flex-col max-w-screen-2xl grow'> 
         <Outlet/>
-        <Footer></Footer>
       </main>
+      <Footer></Footer>
     </>
   )
 }

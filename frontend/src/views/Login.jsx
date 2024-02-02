@@ -6,13 +6,14 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function Login() {
     //use global state or context
-    const { setAuth,remember,setRemember } = useAuth();
+    const { setAuth, remember,setRemember} = useAuth();
+    
     //auto sent user to their destination instead of dumb founded in the login page
     const location = useLocation();
     const navigate = useNavigate();
     const fromLocation = location.state?.from?.pathname || '/';
 
-
+    
     const [email,setEmail]= useState('');
     const [pwd,setPwd]= useState('');
     const [error,setError]= useState('');
@@ -35,14 +36,15 @@ function Login() {
             
             const accessToken = response?.data?.accessToken;
             const user = response?.data?.user;
-
+            
+            
             setAuth({user,accessToken});
             //clear input fields
             setPwd('');
             setEmail('');
             setError('');
 
-            //navigate the user to their destination
+            //navigate the user to their actual destination back
             navigate(fromLocation,{replace:true});
 
         } catch (error) {

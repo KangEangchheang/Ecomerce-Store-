@@ -8,7 +8,7 @@ const pool = mysql.createPool({...dbConfig,connectionLimit: 10}).promise();
 const refresh = async (req,res)=>{
     const cookie = req.cookies;
     if (!cookie?.jwt){ 
-        return res.status(401).json({error:'no cookies'})
+        return res.status(401).json({error:'no cookies'});
     }
 
     const refreshToken = cookie.jwt;
