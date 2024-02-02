@@ -1,7 +1,26 @@
+import axios from 'axios';
+import { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-
-function UserMenu({updateMenu,active}) {
+function UserMenu({updateMenu,active,uid}) {
     const colorState = ['#7D8184','#1E293B'];
+    const nav = useNavigate();
+    const { setAuth } = useAuth();
+    const [error,setError] = useState();
+    
+    const handleLogout = async()=>{
+        const res = await axios.get(`${BASE_URL}/logout/${uid}`,{
+            withCredentials:true
+        });
+        if(!res){
+            return setError('error logging out');
+        }
+        setAuth({});
+        nav('/user');
+    }
+
     return ( 
         <div className="pt-8 mt-8 w-72 border-2 h-fit border-secondary shadow-md rounded-lg text-secondary1">
             <h1 className='mb-8 px-8 text-2xl font-semibold'>Account</h1>
@@ -56,7 +75,7 @@ function UserMenu({updateMenu,active}) {
                         fill={colorState[0]}/>
                         </g>
                     </svg>
-                    <span className='tracking-wide text-text1'>Logout</span>
+                    <span onClick={()=>handleLogout()} className='relative tracking-wide text-text1'>Logout {error?<p className='absolute right-0 text-sm text-red-500'>{error}</p>:null}</span>
                 </div>
             </div>
         </div>
