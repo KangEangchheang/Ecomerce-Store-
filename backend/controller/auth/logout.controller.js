@@ -13,14 +13,14 @@ const logout = async (req,res)=>{
 
     const refreshToken = cookie.jwt;
     //check refresh token in db
-    const [result] = await pool.query(`SELECT * FROM user WHERE refresh_token = ?`,[refreshToken]);
+    const [result] = await pool.query(`SELECT * FROM user WHERE refresh_token = ? AND id = ?`,[refreshToken,id]);
     const user = result[0];
     if(!user) {
         res.clearCookie('jwt',{httpOnly:true,maxAge:7*24*60*60*1000});
         return res.status(204).json({messege:'no content'});
     }
     
-    await pool.query('UPDATE user SET isActive = ?,refresh_token = ? WHERE refresh_token = ?',[0,null,refreshToken]);
+    await pool.query('UPDATE user SET isActive = ?,refresh_token = ? WHERE id = ?',[0,null,id]);
     res.clearCookie('jwt',{httpOnly:true,sameSite:'none',secure:true,maxAge:7*24*60*60*1000});
     res.status(204).json({message:'logout success'});
 }
