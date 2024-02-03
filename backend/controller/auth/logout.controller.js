@@ -21,7 +21,7 @@ const logout = async (req,res)=>{
     }
     
     await pool.query('UPDATE user SET isActive = ?,refresh_token = ? WHERE id = ?',[0,null,id]);
-    res.clearCookie('jwt',{httpOnly:true,sameSite:'none',secure:true,maxAge:7*24*60*60*1000});
+    res.clearCookie('jwt',{httpOnly:true,sameSite:'lax',secure:true,maxAge:7*24*60*60*1000});
     res.status(204).json({message:'logout success'});
 }
 

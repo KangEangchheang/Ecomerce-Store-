@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {useLocation,useNavigate} from 'react-router-dom'
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
@@ -6,7 +6,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function Login() {
     //use global state or context
-    const { setAuth, remember,setRemember} = useAuth();
+    const { setAuth } = useAuth();
     
     //auto sent user to their destination instead of dumb founded in the login page
     const location = useLocation();
@@ -62,15 +62,12 @@ function Login() {
         }
     }
 
-    const handleCheck = () =>{
-        setRemember(prev => !prev);
-    }
-    useEffect(()=>{
-        localStorage.setItem('remember',remember);
-        if(!remember){
-            sessionStorage.setItem('remember',true);
-        }
-    },[remember]);
+    // const handleCheck = () =>{
+    //     setRemember(prev => !prev);
+    // }
+    // useEffect(()=>{
+    //     localStorage.setItem('remember',remember);
+    // },[remember]);
 
     return ( 
         <div className="flex justify-center py-8 h-fit text-sm">
@@ -90,11 +87,11 @@ function Login() {
                     type="password" id="password" name="password" 
                     required onChange={(e)=>setPwd(e.target.value)}/>
 
-                    <div className="flex gap-2 mb-2">
+                    {/* <div className="flex gap-2 mb-2">
                         <input type="checkbox" id="remember" onChange={()=>handleCheck()} checked={remember}/>
                         <label htmlFor="remember" className="text-sm">Remember me</label>
-                    </div>
-                    <button className="active:scale-95 shadow-secondary1 shadow-lg bg-secondary1 px-2 py-2 text-white font-medium rounded-full" type="submit">Login</button>
+                    </div> */}
+                    <button className="active:scale-95 mt-8 shadow-secondary1 shadow-lg bg-secondary1 px-2 py-2 text-white font-medium rounded-full" type="submit">Login</button>
                 </form>
                 <span className="text-left w-full text-sm text-text1">create an account.<a href="/auth/signup" className="ml-2 text-secondary1 font-medium underline">Sign up</a></span>
             </div>

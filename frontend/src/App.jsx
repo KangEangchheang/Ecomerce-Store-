@@ -18,7 +18,7 @@ function App() {
   return (
     <Routes>
       <Route Component={PersistAuth}>
-        <Route path='/' exact Component={Layout}>
+          <Route path='/' exact Component={Layout}>
             {/* public route */}
             <Route path='/' exact Component={Home}/>
             <Route path='/contact' Component={Contact}/>
@@ -39,7 +39,7 @@ function App() {
               <Route path='/user/' Component={User}/>
               <Route path='/user/cart' Component={User}/>
             </Route>
-        </Route>
+          </Route>
 
         {/* catch all routes that isnt define */}
         <Route path='*' Component={NotFound}/>

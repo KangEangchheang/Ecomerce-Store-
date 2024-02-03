@@ -71,8 +71,8 @@ export default function Navbar(){
                 <div className='flex gap-6 items-center'>
                     <div onClick={()=>nav("/user/cart")}><img className='cursor-pointer w-8' src={cart}/></div>
                     {!isLoading && user?
-                    <div className='flex gap-3 items-center' onClick={()=>nav("/user/")}>
-                        <img className='cursor-pointer w-8' src={userpfp}/>
+                    <div className='flex gap-3 items-center cursor-pointer' onClick={()=>nav("/user/")}>
+                        <img className=' w-8' src={userpfp}/>
                         <span className='text-sm'>{user?.username}</span>
                     </div>
                     :<div onClick={()=>nav("/user/")}><img className='cursor-pointer w-8' src={userpfp}/></div>}

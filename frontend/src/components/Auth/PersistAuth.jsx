@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 const PersistAuth = () => {
     const [isLoading,setLoading] = useState(true);
     const refresh = useRefreshToken();
-    const {auth,remember,session} = useAuth();
+    const {auth,remember} = useAuth();
 
     useEffect(()=>{
         let isMounted = true;
@@ -46,17 +46,10 @@ const PersistAuth = () => {
   
     return (
         <>
-            {!remember? // <- this mean that if we didnt want to remember it will not bother to make it persistent or load the persistent code
-                
-                //below code mean: if user dotn want to remember we will force them to use session storage that clear after browser 
-                // is exit that way they can still stay login when still using the website
-                !session? 
-                    <Outlet/>
-                    :isLoading ?
-                        <p>i am loading :3</p>
-                        :<Outlet/>
-                :isLoading ?
-                    <p>i am loading :3</p>
+            {/* {!remember? // <- this mean that if we didnt want to remember it will not bother to make it persistent or load the persistent code
+                <Outlet/> */
+                isLoading ?
+                    <p className='h-screen w-full text-center'>i am loading :3</p>
                     :<Outlet/>
             }
         </>

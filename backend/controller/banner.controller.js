@@ -3,19 +3,31 @@ const mysql = require('mysql2');
 const pool = mysql.createPool({...dbConfig,connectionLimit: 10}).promise();
 
 const getBanners = async(req,res)=>{
-    const [result] = await pool.query('SELECT * FROM banner_image');
-    return res.status(200).send(result);
+   try {
+        const [result] = await pool.query('SELECT * FROM banner_image');
+        return res.status(200).send(result);
+   } catch (error) {
+        console.log(error);
+   }
 }
 
 const getBannersById = async (req,res)=>{
-    const id = req.params.id
-    const [result] = await pool.query('SELECT * FROM banner_image WHERE id = ?',[id]);
-    return res.status(200).send(result[0]);
+    try {
+        const id = req.params.id
+        const [result] = await pool.query('SELECT * FROM banner_image WHERE id = ?',[id]);
+        return res.status(200).send(result[0]);
+    } catch (error) {
+        console.log(error);
+    }
 }
 const deleteBanner = async (req,res)=>{
-    const id = req.params.id;
-    const [result] = await pool.query('DELETE FROM banner_image WHERE id = ?',[id]);
-    return res.status(200).send(result.affectedRows);
+    try {
+        const id = req.params.id;
+        const [result] = await pool.query('DELETE FROM banner_image WHERE id = ?',[id]);
+        return res.status(200).send(result.affectedRows);
+    } catch (error) {
+        console.log(error);
+    }
 }
 const createBanner = async (req,res)=>{
     try {

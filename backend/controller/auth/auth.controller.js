@@ -47,7 +47,7 @@ const login = async (req,res)=>{
         await pool.query('UPDATE user SET isActive = ?,refresh_token = ? WHERE email = ?',updateUser);
 
         //sent cookie httponly hide cookie from people
-        res.cookie('jwt',refreshToken,{httpOnly:true, sameSite:'none', secure:true ,maxAge:7*24*60*60*1000});//1 week cookie
+        res.cookie('jwt',refreshToken,{httpOnly:true, sameSite:'lax', secure:true ,maxAge:7*24*60*60*1000});//1 week cookie
         res.json({
             accessToken:accessToken,
             user:{
