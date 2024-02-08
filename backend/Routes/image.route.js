@@ -1,5 +1,7 @@
 const express = require('express');
 const multer = require('multer');
+const auth = require('../config/middleware/authMiddleware');
+const user_typeVerify = require('../config/middleware//verifyUsertype.js');
 const controller = require('../controller/image.controller.js');
 
 const img = express.Router();
@@ -28,6 +30,10 @@ img.get('/products',controller.getProductImage);
 img.get('/suppliers',controller.getSupplierImage);
 img.get('/suppliers/:id',controller.getSupplierImageById);
 img.get('/products/:id',controller.getProductImageById);
+
+img.use(auth);
+img.use(user_typeVerify('admin'));
+
 img.post('/suppliers',upload.array('supplier'),controller.createSupplierImage);
 img.post('/products',upload.array('products'),controller.createProductImage);
 img.delete('/delete/:name',controller.deleteImage);

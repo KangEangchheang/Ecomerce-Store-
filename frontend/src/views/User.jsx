@@ -6,24 +6,57 @@ import Dashboard from '../components/user/Dashboard';
 import Cart from '../components/user/Cart';
 import Setting from '../components/user/Setting';
 import OrderHistory from '../components/user/OrderHistory'
+import useAuth from "../hooks/useAuth";
+import useInterceptor from "../hooks/useInterceptor";
 function User() {
     const location = useLocation();
     const nav = useNavigate();
     const [ActiveNav,setNav]= useState('Dashboard');
+    const [isLoading,setLoading] = useState(true);
+    const { auth } = useAuth();
+    const interceptor = useInterceptor();
+    //user state
+    const [user,setUser] = useState({});
+
+    useEffect(() =>{
+        const controller = new AbortController();
+        //mounted mean that we can see the component in the website
+        let isMounted = true;
+
+        const getUser = async () =>{
+            try {
+                //signal is for cancelling requests for uncessary requests from the same route
+                const res = await interceptor.get(`/user/id/${auth.user.id}`,{
+                    signal: controller.signal
+                })
+                isMounted && setUser(res.data);
+                setLoading(false);
+            } catch (error) {
+                //if its a cancel error dont be alarms, its becuz the request got cancelled but the first one did made it through
+                if(error.message === "canceled"){
+                    return;
+                }
+                console.log(error?.message);
+            }
+        }
+        getUser();
+
+        return () => {
+            isMounted = false;
+            controller.abort();
+        }
+    },[]);
+
     useEffect(()=>{
         const param = location.pathname.split('/');
-        if(param[3] === 'cart'){
+        if(param[2] === 'cart'){
             setNav('Cart');
-            nav('/user/1')
+            nav('/user/')
         }
-    },[location.pathname])
-    const user = {
-        role:'customer',
-        username:'Tom Cruise',
-        email:'TCruise@gmail.com',
-        profile_image:'https://depor.com/resizer/tilTJ9AnxA_aqg-_fXPvrLYiL30=/580x330/smart/filters:format(jpeg):quality(90)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/CWKGFLSLYBFKXI2QNCAECPZN2I.jpg',
-        phonenumber:'+855 15989871'
-    }
+        
+    },[location.pathname]);
+
+
     function getDate() {
         const currentDate = new Date();
         // Use toLocaleDateString with options to get day, month name, and two-digit year
@@ -81,8 +114,12 @@ function User() {
             <UserNavigationTab param={ActiveNav}/>
             {/* container of menu and it's content */}
             <div className="flex gap-4 justify-between">
-                <UserMenu active={ActiveNav} updateMenu={getMenu}/>
-                {menuComponent[ActiveNav]}
+                <UserMenu active={ActiveNav} updateMenu={getMenu} uid={auth.user?.id}/>
+                {
+                isLoading? 
+                    <div>loading...</div>
+                    :menuComponent[ActiveNav]
+                }
             </div>
         </div>
      );

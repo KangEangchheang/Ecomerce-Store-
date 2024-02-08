@@ -1,7 +1,28 @@
+import axios from 'axios';
+import { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-
-function UserMenu({updateMenu,active}) {
+function UserMenu({updateMenu,active,uid}) {
     const colorState = ['#7D8184','#1E293B'];
+    const nav = useNavigate();
+    const { setAuth } = useAuth();
+    const [error,setError] = useState();
+    
+    const handleLogout = async()=>{
+        const res = await axios.get(`${BASE_URL}/logout/${uid}`,{
+            withCredentials:true
+        });
+        if(!res){
+            return setError('error logging out');
+        }
+        localStorage.clear();
+        sessionStorage.clear();
+        setAuth({});
+        nav('/user');
+    }
+
     return ( 
         <div className="pt-8 mt-8 w-72 border-2 h-fit border-secondary shadow-md rounded-lg text-secondary1">
             <h1 className='mb-8 px-8 text-2xl font-semibold'>Account</h1>
@@ -49,14 +70,14 @@ function UserMenu({updateMenu,active}) {
                     <span className={'tracking-wide'&& active==='Setting'? `font-medium text-secondary1`:`text-text1`}>Setting</span>
                 </div>
                 
-                <div className='flex gap-4 py-6 pl-8 w-full  cursor-pointer hover:bg-secondary'>
+                <div  onClick={()=>handleLogout()} className='flex gap-4 py-6 pl-8 w-full  cursor-pointer hover:bg-secondary'>
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="Group">
                         <path className='hover:fill-secondary1' id="Vector" d="M16 18H7C6.46957 18 5.96086 17.7893 5.58579 17.4142C5.21071 17.0391 5 16.5304 5 16V12H7V16H16V2H7V6H5V2C5 1.46957 5.21071 0.960859 5.58579 0.585786C5.96086 0.210714 6.46957 0 7 0H16C16.5304 0 17.0391 0.210714 17.4142 0.585786C17.7893 0.960859 18 1.46957 18 2V16C18 16.5304 17.7893 17.0391 17.4142 17.4142C17.0391 17.7893 16.5304 18 16 18ZM9 13V10H0V8H9V5L14 9L9 13Z" 
-                        fill={colorState[0]}/>
+                        fill='red'/>
                         </g>
                     </svg>
-                    <span className='tracking-wide text-text1'>Logout</span>
+                    <span className='relative tracking-wide text-red-500'>Logout {error?<p className='absolute right-0 text-sm text-red-500'>{error}</p>:null}</span>
                 </div>
             </div>
         </div>

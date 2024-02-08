@@ -30,7 +30,9 @@ const getUserByName = async (req, res) => {
 const getUserById = async (req, res) => {
     try {
         const userId = req.params.id; // Assuming 'id' is the parameter in the route path
-        const [result] = await pool.query('SELECT * FROM user WHERE id = ?;', [userId]);
+        const [result] = await pool.query(`SELECT 
+            user_type,username,email,phone_number,profile_image
+        FROM user WHERE id = ?`, [userId]);
 
         if (result.length === 0) {
             return res.status(404).json({ message: 'User not found' });
@@ -85,13 +87,11 @@ const updateUser = async (req, res) => {
             UPDATE user
             SET
                 username = ?,
-                user_type = ?,
                 phone_number = ?,
                 email = ?,
                 profile_image = ?,
-                isActive = ?
             WHERE id = ?;
-        `, [username, user_type, phone_number, email, profile_image, isActive, userId]);
+        `, [username, phone_number, email, profile_image, userId]);
 
         return res.status(200).json({ message: 'User updated successfully' });
     } catch (error) {

@@ -1,17 +1,20 @@
 const express = require('express');
 const dis = express.Router();
-const bodyParser = require('body-parser');
+const auth = require('../config/middleware/authMiddleware');
+const user_typeVerify = require('../config/middleware//verifyUsertype.js');
 
 const controller = require('../controller/discount.controller.js');
-const verifyToken = require('../config/middleware/authMiddleware.js');
-// dis.use(bodyParser.json());
-// dis.use(verifyToken);
+
 
 dis.get('/',controller.getDiscount);
 dis.get('/id/:id',controller.getDiscountById);
+dis.get('/active',controller.getActiveDiscounts)
+
+dis.use(auth);
+dis.use(user_typeVerify('admin'));
+
 dis.post('/',controller.createDiscount);
 dis.put('/:id',controller.updateDiscount);
 dis.delete('/:id',controller.deleteDiscount);
-dis.get('/active',controller.getActiveDiscounts)
 
 module.exports = dis;

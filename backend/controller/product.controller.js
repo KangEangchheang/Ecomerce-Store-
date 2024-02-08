@@ -4,8 +4,12 @@ const mysql = require('mysql2');
 const pool = mysql.createPool({...dbConfig,connectionLimit: 10}).promise();
 
 const getProduct = async (req,res) =>{
-    const [result] = await pool.query(` SELECT * FROM product`);
-    return res.status(200).send(result);
+    try {
+        const [result] = await pool.query(` SELECT * FROM product`);
+        return res.status(200).send(result);
+    } catch (error) {
+        console.log(error);
+    }
 }
 const getRelatedProduct = async (req,res) =>{
     const name = req.params.name;
@@ -16,9 +20,13 @@ const getRelatedProduct = async (req,res) =>{
 }
 
 const getProductById = async (req,res) =>{
-    const id = req.params.id
-    const [result] = await pool.query(`SELECT * FROM product WHERE id = ?`,[id]);
-    return res.status(200).send(result[0]);
+    try {
+        const id = req.params.id;
+        const [result] = await pool.query(`SELECT * FROM product WHERE id = ?`,[id]);
+        return res.status(200).send(result[0]);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 // get product by name

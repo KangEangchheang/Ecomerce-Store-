@@ -1,4 +1,4 @@
-
+import userpfp from '../../assets/icons/user.svg';
 function Dashboard({user,order,address}) {
     return ( 
         <div className="flex grow mt-8 flex-col gap-4">
@@ -7,7 +7,7 @@ function Dashboard({user,order,address}) {
                 <div className="flex justify-center items-center py-4 flex-grow border-2 rounded-lg shadow-md border-secondary">
                     <div className="flex flex-col gap-1 text-center items-center">
                         <div className="border-2 border-l-secondary w-fit p-px rounded-full">
-                            <img className="object-cover w-28 h-28 rounded-full" alt="loading" src={user.profile_image}/>
+                            <img className="object-cover w-28 h-28 rounded-full" alt={"loading" } src={userpfp}/>
                         </div>
                         <div className="flex flex-col">
                             <p className="font-semibold text-lg">{user.username}</p>
